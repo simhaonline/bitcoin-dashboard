@@ -1,0 +1,361 @@
+<!-- START Options -->
+<div class="options">
+    <div class="options__option option">
+        <span class="option__label">
+            Group Price by:
+        </span>
+        <div class="option__buttons btn-group">
+            <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [ngClass]="{active: !grouping}"
+                (click)="grouping = null"
+            >
+                <i class="fa fa-ban fa-fw"></i>
+            </button>
+            <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [ngClass]="{active: grouping === 1}"
+                (click)="grouping = 1"
+            >
+                1
+            </button>
+            <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [ngClass]="{active: grouping === 5}"
+                (click)="grouping = 5"
+            >
+                5
+            </button>
+            <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [ngClass]="{active: grouping === 10}"
+                (click)="grouping = 10"
+            >
+                10
+            </button>
+            <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [ngClass]="{active: grouping === 100}"
+                (click)="grouping = 100"
+            >
+                100
+            </button>
+        </div>
+    </div>
+
+    <div class="options__option option widget__options">
+        <ng-template appWidgetOptionsHost></ng-template>
+    </div>
+</div>
+<!-- END Options -->
+<!-- START Table View -->
+<div *ngIf="selectedTableStyle === ViewMode.Table">
+    <ul class="list-group">
+        <!-- START Summary -->
+        <li class="list-group-item summary summary--sm-3">
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    24h High
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.high ? (summary.high | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    24h Low
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.low ? (summary.low | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    24h Vol.
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.volume ? (summary.volume | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Open
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.open ? (summary.open | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Expires In
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.expiresIn ? summary.expiresIn : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Premium
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.premium ? (summary.premium | round:1) : '-' }}%
+                </span>
+            </div>
+        </li>
+        <!-- END Summary -->
+    </ul>
+    <!-- START First Table -->
+    <table class="table table-sm table-hover table-striped mb-0">
+        <thead>
+            <tr>
+                <th scope="col" class="small text-muted">
+                    <strong>Price</strong>
+                </th>
+                <th scope="col" class="small text-muted text-center ">
+                    <strong>Size</strong>
+                </th>
+                <th scope="col" class="small text-right text-muted">
+                    <strong>Total</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of asks">
+                <td class="text-danger">
+                    {{row.price ? (row.price | round:2) : '-'}}
+                </td>
+                <td class="text-center text-muted">
+                    {{row.quantity ? (row.quantity | round) : '-'}}
+                </td>
+                <td class="text-right">
+                    {{row.cm ? (row.cm | round) : '-'}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- END First Table -->
+    <!-- START Middle Summary -->
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item by-0 summary">
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    24h Vol.
+                </abbr>
+                <span class="summary__item__value">
+                    <i 
+                        class="fa fa-fw"
+                        [class.fa-caret-down]="summary.overall < 0"
+                        [class.fa-caret-up]="summary.overall >= 0"
+                        [class.text-danger]="summary.overall < 0"
+                        [class.text-success]="summary.overall >= 0"
+                    ></i>
+                    {{ summary.overall ? (summary.overall | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Mark
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.mark ? (summary.mark | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Index
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.index ? (summary.index | round:2) : '-' }}
+                </span>
+            </div>
+        </li>
+    </ul>
+    <!-- END Middle Summary -->
+    <!-- START Second Table -->
+    <table class="table table-sm table-hover table-striped mb-0">
+        <thead>
+            <tr>
+                <th scope="col" class="small text-muted">
+                    <strong>Price</strong>
+                </th>
+                <th scope="col" class="small text-muted text-center ">
+                    <strong>Size</strong>
+                </th>
+                <th scope="col" class="small text-right text-muted">
+                    <strong>Total</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of bids">
+                <td class="text-success">
+                    {{row.price ? (row.price | round:2) : '-'}}
+                </td>
+                <td class="text-center text-muted">
+                    {{row.quantity ? (row.quantity | round) : '-'}}
+                </td>
+                <td class="text-right">
+                    {{row.cm ? (row.cm | round) : '-'}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- END Second Table -->
+</div>
+<!-- END Table View -->
+
+<!-- START Split View -->
+<div *ngIf="selectedTableStyle === ViewMode.Split">
+    <ul class="list-group list-group-flush">
+        <!-- START Summary -->
+        <li class="list-group-item summary summary--sm-4">
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    24h High
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.high ? (summary.high | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    24h Low
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.low ? (summary.low | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    24h Vol.
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.volume ? (summary.volume | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Open
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.open ? (summary.open | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Expires In
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.expiresIn ? summary.expiresIn : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Premium
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.premium ? (summary.premium | round:1) : '-' }}%
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Mark
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.mark ? (summary.mark | round:2) : '-' }}
+                </span>
+            </div>
+
+            <div class="summary__item">
+                <abbr class="summary__item__title" title="Some title">
+                    Index
+                </abbr>
+                <span class="summary__item__value">
+                    {{ summary.index ? (summary.index | round:2) : '-' }}
+                </span>
+            </div>
+        </li>
+        <!-- END Summary -->
+    </ul>
+    <div class="table-merged">
+        <table class="table table-sm table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col" class="small text-left text-muted">
+                        <strong>Total</strong>
+                    </th>
+                    <th scope="col" class="small text-muted text-center ">
+                        <strong>Size</strong>
+                    </th>
+                    <th scope="col" class="small text-muted text-right">
+                        <strong>Price</strong>
+                    </th>
+                    <th style="width: 20%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of asks">
+                    <td class="text-left">
+                        {{row.cm ? (row.cm | round) : '-'}}
+                    </td>
+                    <td class="text-center text-muted">
+                        {{row.quantity ? (row.quantity | round) : '-'}}
+                    </td>
+                    <td class="text-danger text-right">
+                        {{row.price ? (row.price | round:2) : '-'}}
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-striped mb-0">
+            <thead>
+                <tr>
+                    <th style="width: 20%"></th>
+                    <th scope="col" class="small text-muted text-left">
+                        <strong>Price</strong>
+                    </th>
+                    <th scope="col" class="small text-muted text-center">
+                        <strong>Size</strong>
+                    </th>
+                    <th scope="col" class="small text-right text-muted">
+                        <strong>Total</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of bids">
+                    <td></td>
+                    <td class="text-success text-left">
+                        {{row.price ? (row.price | round:2) : '-'}}
+                    </td>
+                    <td class="text-center text-muted text-center">
+                        {{row.quantity ? (row.quantity | round) : '-'}}
+                    </td>
+                    <td class="text-right">
+                        {{row.cm ? (row.cm | round) : '-'}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- END Split View -->

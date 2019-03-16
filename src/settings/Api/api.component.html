@@ -1,0 +1,59 @@
+<div class="card card--plain card--multiple">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs nav-tabs--underline">
+            <li class="nav-item">
+                <a 
+                    class="nav-link active"
+                    href="javascript:;"
+                    [ngClass]="{'active': enabledTab === 'access'}"
+                    (click)="enabledTab = 'access'"
+                >
+                    Access
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    class="nav-link"
+                    href="javascript:;"
+                    [ngClass]="{'active': enabledTab === 'api-console'}"
+                    (click)="enabledTab = 'api-console'"
+                >
+                    API Console
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <!-- Access -->
+            <div 
+                class="tab-pane card-form"
+                [ngClass]="{'active': enabledTab === 'access'}"
+            >
+                <app-api-access [accessKey]="accessKey" [accessSecret]="accessSecret"></app-api-access>
+            </div>
+
+            <!-- Api Console -->
+            <div 
+                class="tab-pane"
+                [ngClass]="{'active': enabledTab === 'api-console'}"
+            >
+                <app-api-console [accessKey]="accessKey" [accessSecret]="accessSecret"></app-api-console>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer doc-links">
+        <a class="doc-links__link" href="javascript:;">
+            <i class="fa fa-file-o text-muted"></i>
+            <span>Rest and WebSocket Api</span>
+        </a>
+        <a class="doc-links__link" href="javascript:;">
+            <i class="fa fa-file-o text-muted"></i>
+            <span>FIX API Documentation</span>
+        </a>
+        <a class="doc-links__link" href="javascript:;">
+            <i class="fa fa-github text-muted"></i>
+            <span>Github API Wrappers and Samples</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+@import "~assets/scss/bootstrap/variables-dark";
+
+.trigger {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+
+    &:not(.active) {
+        color: $text-muted;
+    }
+}
+
+:host-context(.widget__options__option:last-child) {
+    .trigger {
+        padding-right: 0;
+    }
+}

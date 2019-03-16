@@ -1,0 +1,101 @@
+<!-- My Account Section -->
+<div class="card card--plain card--multiple">
+    <div class="card-header">
+        My Account
+    </div>
+    <div class="card-body">
+        <form class="card-form">
+            <div class="form-group">
+                <label class="card-form__label" for="my-account__user-name">
+                    Alias / Nickname
+                </label>
+                <div class="card-form__input-wrap">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="my-account__user-name"
+                            [value]="userName"
+                            readonly
+                        />
+                        <span class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                Change
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="card-form__label">
+                    Email
+                </label>
+                <div class="card-form__input-wrap">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="my-account__email"
+                        [value]="userEmail"
+                        readonly
+                    />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Access Log Section -->
+<div class="card card--plain card--multiple">
+    <div class="card-header">
+        Access Log
+    </div>
+    <div class="wd-table">
+        <table class=" table table-sm table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th class="text-right">IP</th>
+                    <th class="text-right">Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let access of accessListPage">
+                    <td class="text-inverse">
+                        <samp>
+                            {{ access.date | date:'E MMM dd yyy HH:mm:ss O' }}
+                        </samp>
+                    </td>
+                    <td class="text-right">
+                        <samp>
+                            {{ access.ip }}
+                        </samp>
+                    </td>
+                    <td class="text-right">
+                        <span class="badge badge-success badge--alt" *ngIf="access.success">
+                            Success
+                        </span>
+                        <span class="badge badge-danger badge--alt" *ngIf="!access.success">
+                            Failed
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <span class="text-muted">
+            Showing {{ accessListPageSize * (accessListPageNo - 1) }} to {{ accessListPageSize * (accessListPageNo - 1) + accessListPage.length }} of {{accessList.length}} entries.
+        </span>
+        <nav aria-label="Access Log Paginator">
+            <ngb-pagination 
+                [collectionSize]="accessList.length" 
+                [(page)]="accessListPageNo"
+                [pageSize]="accessListPageSize"
+                [maxSize]="3"
+                aria-label="Access Log Paginator"
+                size="sm"
+                class="pagination--no-margin"
+            ></ngb-pagination>
+        </nav>
+    </div>
+</div>

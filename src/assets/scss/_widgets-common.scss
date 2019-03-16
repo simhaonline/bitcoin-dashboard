@@ -1,0 +1,329 @@
+@import 'variables';
+@import 'bootstrap/variables';
+
+.theme {
+    .widget-wrap {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    @keyframes highlightDimming {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+
+    @keyframes higlightBlink {
+        0% { opacity: 0 }
+        50% { opacity: 1 }
+        100% { opacity: 0 }
+    }
+
+    .widget {
+        transition: opacity 350ms ease-in-out;
+
+        &--highlighted {
+            position: relative;
+
+            &::after {
+                content: " ";
+                box-sizing: content-box;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                border: 3px dashed;
+                animation: highlightDimming 1.5s infinite cubic-bezier(0.645, 0.045, 0.355, 1.000);
+                pointer-events: none;
+                z-index: 100;
+            }
+
+            &--blink {
+                &::after {
+                    opacity: 0;
+                    border-style: solid;
+                    animation: higlightBlink 1.5s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+                }
+            }
+        }
+
+        &__header {
+            display: flex;
+            align-items: flex-end;
+            flex: 0 0 auto;
+
+            &--single {
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            &__collapse {
+                margin-right: 0.5rem;
+            }
+            
+            &__action {
+                color: $text-muted;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .card-header.widget__header--single {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        &__title-wrap {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+        }
+
+        &__title {
+            white-space: nowrap;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        &__tab__action {
+            margin-right: 0.5rem;
+        }
+
+        &__tabs {
+            &.nav-pills .nav-tabs {
+                padding-bottom: 1px;
+            }
+
+            .nav-tabs {
+                border-bottom: none;
+            }
+        }
+
+        &__options {
+            flex: 0 0 auto;
+            margin-left: 1.7rem;
+
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+
+            .widget__options__option + .widget__options__option {
+                margin-left: 0.75rem;
+            }
+        }
+    }
+
+    .wd-size--xs,
+    .wd-size--sm,
+    .wd-size--md {
+        .widget__options {
+            flex: 1 1 100%;
+            margin-left: 0;
+        }
+    }
+
+    .widget__title + .widget__tabs {
+        margin-left: 1rem;
+    }
+
+    .widget__title + .widget__title {
+        margin-left: 0.5rem;
+    }
+
+    /*======= Widget Collapse / Animation ========= */
+    .widget--collapsed {
+        .widget__header {
+            border-bottom: none;
+            align-items: center; 
+        }
+        .widget__content {
+            overflow: hidden;
+        }
+    }
+
+    .widget__content.ng-animating {
+        overflow: hidden;
+    }
+
+    .wd-options {
+        display: flex;
+        align-items: center;
+
+        padding: 10px;
+        border-bottom: 1px solid #333;
+
+        &--right {
+            justify-content: flex-end;
+        }
+    }
+
+    .wd-table {
+        table {
+            margin-bottom: 0;
+        
+            th {
+                font-size: 10px;
+                font-weight: 700;
+                color: $text-muted;
+            }
+        
+            th,td {
+                white-space: nowrap;
+            }
+
+            td {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .wd-placeholder {
+        min-height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+
+        &__content {
+            font-size: 32px;
+        }
+    }
+
+    /****** Widget Fullscreen ******/
+    $gutter: 5px;
+
+    /* Hide Content */
+    body.content-hidden {
+        overflow-y: hidden;
+
+        .widget:not(.widget--fullscreen) {
+            opacity: 0;
+        }
+    }
+
+    /* Fullscreen Widget itself */
+    .widget.widget--fullscreen {
+        position: fixed;
+        top: 59px + $gutter;
+        left: $gutter;
+        right: $gutter;
+        bottom: auto;
+        z-index: 300;
+        max-height: calc(100vh - #{59px + $gutter});
+
+        overflow-y: auto;
+
+    }
+    @media (min-width: 1200px) {
+        .layout--sidebar-visible {
+            .widget.widget--fullscreen {
+                left: $sidebar-width + $gutter;
+            }
+        }
+    }
+}
+
+/* #region Dark */
+.theme--dark {
+    @import 'variables-dark';
+    @import 'bootstrap/variables-dark';
+
+    .widget {
+        &--highlighted::after {
+            background: rgba($highlightColor, 0.1);
+            border-color: $highlightColor;
+        }
+
+        &__header {
+            color: #fff;
+    
+            &__collapse {
+                color: $text-muted;
+            }
+    
+            .widget__title:hover &__collapse {
+                color: #fff;
+            }
+        }
+    
+        &__header__action {
+            color: $text-muted;
+        }
+
+        &__title {
+            &:hover {
+                color: #fff;
+            }
+        }
+    
+        &__tab__action {
+            color: $text-muted;
+        }
+    }
+
+    .wd-placeholder {
+        background-color: $gray-800;
+    
+        &__content {
+            color: $text-muted;
+        }
+    }
+}
+/* #endregion */
+
+/* #region Light */    
+.theme--light {
+    @import 'variables-light';
+    @import 'bootstrap/variables-light';
+
+    .widget {
+        &--highlighted::after {
+            background: rgba($highlightColor, 0.1);
+            border-color: $highlightColor;
+        }
+
+        &__header {
+            color: #fff;
+    
+            &__collapse {
+                color: $text-muted;
+            }
+    
+            .widget__title:hover &__collapse {
+                color: #fff;
+            }
+        }
+    
+        &__header__action {
+            color: $gray-500;
+        }
+
+        &__title {
+            &:hover {
+                color: map-get($theme-colors, 'dark');
+            }
+        }
+    
+        &__tab__action {
+            color: $gray-500;
+        }
+    }
+
+    
+
+    .wd-placeholder {
+        background-color: $white;
+    
+        &__content {
+            color: $gray-400;
+        }
+    }
+}
+/* #endregion */

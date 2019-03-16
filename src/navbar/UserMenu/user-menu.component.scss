@@ -1,0 +1,23 @@
+/* #region Theme Dark */
+:host-context(.theme--dark) {
+    @import '~assets/scss/variables-dark';
+
+    .user-name {
+        color: $text-muted;
+
+        &__value {
+            color: $white;
+        }
+    }
+}
+/* #endregion */
+
+/* #region Theme Light */
+:host-context(.theme--light) {
+    @import '~assets/scss/variables-light';
+
+    .user-name {
+        color: $text-muted;
+    }
+}
+/* #endregion */

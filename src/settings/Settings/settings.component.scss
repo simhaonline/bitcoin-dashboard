@@ -1,0 +1,52 @@
+@import '~assets/scss/bootstrap/variables-dark';
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+
+    &__avatar {
+        flex: 0 0 auto;
+        padding-right: 1rem;
+    }
+
+    &__body {
+        flex: 1 1 auto;
+    }
+
+    &__back-links {
+        flex: 0 0 auto;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+    }
+}
+
+.breadcrumbs {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+
+    > * + *::before {
+        content: "/";
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        color: $gray-600;
+    }
+
+    &__title {
+        color: #fff;
+    }
+}
+
+.badge.badge--username {
+    background: none;
+    text-transform: uppercase;
+    border: 1px solid $gray-600;
+    color: $text-muted;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

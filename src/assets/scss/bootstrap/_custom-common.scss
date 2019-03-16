@@ -1,0 +1,128 @@
+@import 'variables';
+
+.btn-group {
+    &.btn-group-justify {
+        display: flex;
+        
+        > .btn {
+            flex: 1 1 auto;
+        }
+    }
+}
+
+.custom-control {
+    &.custom-checkbox {
+        .custom-control-description {
+            line-height: 24px;
+        }
+    }
+}
+
+.card {
+    border-radius: 0;
+}
+
+.tooltip {
+    z-index: 15;
+}
+
+.progress-slim {
+    .progress {
+        height: 4px;
+        border-radius: 0;
+    }
+}
+
+.nav-dropdown {
+    .dropdown-toggle::after {
+        content: none;
+    }
+
+    .dropdown-menu {
+        top: 100% !important;
+        position: absolute;
+    }
+
+    .dropdown-toggle .fa {
+        font-size: 15px;
+    }
+}
+
+.row.small-gutters {
+    margin-left: -$small-gutter-width / 2;
+    margin-right: -$small-gutter-width / 2;
+
+    > [class*="col-"],
+    > .col {
+        padding-left: $small-gutter-width / 2;
+        padding-right: $small-gutter-width / 2;
+    }
+}
+
+.custom-checkbox {
+    .custom-control-label {
+        line-height: 24px;
+    }
+}
+
+.navbar .dropdown-menu {
+    margin-top: 10px;
+}
+
+.nav-dropdown.nav-dropdown--full-mobile {
+    @media (max-width: 485px) {
+        .dropdown-menu {
+            position: fixed;
+            left: 0 !important;
+            right: 0 !important;
+            top: 50px !important;
+            max-width: none;
+        }
+    }
+}
+
+.nav-tabs.nav-tabs--underline {
+    .nav-link {
+        border-color: transparent;
+        border-top-left-radius: none;
+        border-top-right-radius: none;
+    }
+}
+
+.nav-tabs-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .nav-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 1px;
+
+        .nav-item {
+            flex: 0 0 auto;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        height: 2px;
+    }
+}
+
+.card > .table-responsive > .table-bordered,
+.card > .table-bordered {
+    th:first-child,
+    td:first-child {
+        border-left: none;
+    }
+    th:last-child,
+    td:last-child {
+        border-right: none;
+    }
+}
+
+.card > .table-responsive:last-child > .table-bordered,
+.card > .table-border:last-child {
+    td {
+        border-bottom: none;
+    }
+}

@@ -1,0 +1,86 @@
+<div class="card card--plain card--multiple">
+    <div class="card-header header">
+        <div class="input-group header__search">
+            <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                    <i class="fa fa-fw fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="dt-wrap">
+        <div class="dt-wrap__table">
+            <ngx-datatable
+                class="bootstrap table table-sm table-striped table-hover"
+                [rows]="transactionsList"
+                [columns]="columns"
+                [limit]="transactionsListPageSize"
+                [offset]="transactionsListPageNo - 1"
+                [headerHeight]="26.60"
+                [rowHeight]="28"
+                [columnMode]="'force'"
+                [loadingIndicator]="true"
+                [sorts]="[{ prop: 'date', dir: 'desc' }]"
+            >
+            </ngx-datatable>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <span class="text-muted">
+            Showing {{ transactionsListPageSize * (transactionsListPageNo - 1) }} to {{ transactionsListPageSize * (transactionsListPageNo - 1) + transactionsListPageSize }} of {{transactionsList.length}} entries.
+        </span>
+        <nav aria-label="Deposits Log Paginator">
+            <ngb-pagination 
+                [collectionSize]="transactionsList.length" 
+                [(page)]="transactionsListPageNo"
+                [pageSize]="transactionsListPageSize"
+                [maxSize]="3"
+                aria-label="Deposits Log Paginator"
+                size="sm"
+                class="pagination--no-margin"
+            ></ngb-pagination>
+        </nav>
+    </div>
+</div>
+
+<ng-template #dateTmpl let-value="value">
+    {{ value | date : 'yyyy-MM-dd HH:mm:ss' }}
+</ng-template>
+
+<ng-template #nullTmpl let-value="value">
+    {{ value || '-' }}
+</ng-template>
+
+<ng-template #typeTmpl let-value="value">
+    <span class="badge text-uppercase badge-success" *ngIf="value === 'deposit'">
+        Deposit
+    </span>
+    <span class="badge text-uppercase badge-danger" *ngIf="value === 'withdrawal'">
+        Withdrawal
+    </span>
+</ng-template>
+
+<ng-template #cashFlowTmpl let-value="value">
+    <span
+        [ngClass]="{
+            'text-success': value >= 0,
+            'text-danger': value < 0
+        }"
+    >
+        {{ value | number : '1.7-7' }}
+    </span>
+</ng-template>
+
+<ng-template #balanceTmpl let-value="value">
+    {{ value | number : '1.7-7' }}
+</ng-template>
+
+<ng-template #infoTmpl let-value="value">
+    <a href="javascript:;" *ngIf="value" class="text-primary small">
+        Deposit to {{value}}
+    </a>
+    <span *ngIf="!value">
+        -
+    </span>
+</ng-template>

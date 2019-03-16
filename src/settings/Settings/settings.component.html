@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="header">
+        <div class="header__avatar">
+            <i class="fa fa-fw fa-user-circle text-muted fa-3x"></i>
+        </div>
+        <div class="header__body">
+            <div class="breadcrumbs mb-2">
+                <span class="breadcrumbs__email">
+                    {{ loggedUserEmail }}
+                </span>
+                <span class="breadcrumbs__title">
+                    {{ childTitle }}
+                </span>
+            </div>
+            <span class="badge badge-primary badge--username mr-1">
+                {{ loggedUserName }}
+            </span>
+            Edit your Name, Avatar, etc...
+        </div>
+        <div class="header__back-links">
+            <a href="javascript:;" class="header-link text-primary">
+                <i class="fa fa-fw fa-sign-out text-muted"></i>
+                Sign Out
+            </a>
+            <a
+                routerLink="/"
+                class="header-link text-primary"
+            >
+                <i class="fa fa-fw fa-angle-left text-muted"></i>
+                Back to Dashboard
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav flex-column nav-pills">
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/my-account']"
+                        routerLinkActive="active"
+                        class="nav-link"
+                    >
+                        My Account
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/security']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Security
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/withdraw']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Withdraw
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/deposit']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Deposit
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/api']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Api
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/transaction-log']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Transaction Log
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/statistics']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Statistics
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        [routerLink]="['/settings/affilate']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="nav-link"
+                    >
+                        Affilate
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

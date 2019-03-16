@@ -1,0 +1,34 @@
+<div class="wd-table">
+    <div class="table-responsive">
+        <table class="table table-sm table-striped rt__table">
+            <thead>
+                <tr>
+                    <th class="text-muted">Side</th>
+                    <th class="text-left text-muted">Price</th>
+                    <th class="text-left text-muted">Qunatity</th>
+                    <th class="text-right text-muted">Date Time</th>
+                </tr>
+            </thead>
+            <tbody customScrollbar>
+                <tr 
+                    *ngFor="let row of (recentTrades | async)?.list"
+                    [class.text-success]="row.direction == 'buy'"
+                    [class.text-danger]="row.direction == 'sell'"
+                >
+                    <td>
+                        {{row.direction === 'buy' ? 'Buy' : 'Sell'}}
+                    </td>
+                    <td class="text-left">
+                        {{row.price | number : '1.2-2'}}
+                    </td>
+                    <td class="text-left">
+                        {{row.quantity | round : 0}}
+                    </td>
+                    <td class="text-right">
+                        {{row.timeStamp | date : 'dd-MM H:mm:ss' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

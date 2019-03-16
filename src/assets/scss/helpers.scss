@@ -1,0 +1,42 @@
+.theme--dark,
+.theme--light {
+    .text-smaller {
+        font-size: 70%;
+    }
+    
+    .text-nowrap {
+        white-space: nowrap;
+    }
+    
+    .pagination--no-margin {
+        .pagination {
+            margin-bottom: 0;
+        }
+    }
+    
+    .list-group.list-group--borderless .list-group-item {
+        border: none;
+    }
+}
+
+/* #region Dark */
+.theme--dark {
+    @import 'variables-dark';
+    @import 'bootstrap/variables-dark';
+
+    .text-inverse {
+        color: #fff;
+    }
+}
+/* #endregion */
+
+/* #region Light */    
+.theme--light {
+    @import 'variables-light';
+    @import 'bootstrap/variables-light';
+
+    .text-inverse {
+        color: #000;
+    }
+}
+/* #endregion */

@@ -1,0 +1,118 @@
+@import "variables";
+@import "bootstrap/variables";
+@import "variables-dark";
+
+// =============== Base ===============
+.theme {
+    .layout__sidebar {
+        background-color: #555;
+        width: $sidebar-width;
+        height: 100vh;
+        position: fixed;
+        transform: translateX(-100%);
+    }
+
+    .layout--sidebar-visible .layout__sidebar {
+        transform: translateX(0);
+    }
+}
+
+// ============== Types ===============
+@mixin overlay-sidebar {
+    .theme {
+        .layout__sidebar {
+            z-index: 1032;
+            transition: box-shadow $sidebar-transition,
+                        transform $sidebar-transition;
+            top: 0;
+            left: 0;
+            transform: translateX(-100%);
+        }
+    
+        .layout__wrap {
+            margin-left: 0;
+            position: relative;
+            min-height: 100vh;
+    
+            // Dark Overlay
+            &::after {
+                content: "";
+                z-index: 1031;
+                pointer-events: none;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    
+        .layout--animate .layout__sidebar {
+            transition: transform $sidebar-transition;
+        }
+    
+        .layout--sidebar-visible .layout__wrap::after {
+            pointer-events: all;
+        }
+    
+        .layout--animate .layout__wrap::after {
+            transition: opacity $sidebar-transition;
+        }
+    }
+
+    /* Dark */
+    .theme--dark {
+        @import "./variables-dark";
+        .layout__wrap::after {
+            background: $sidebar-overlay-color;
+        }
+        .layout--sidebar-visible .layout__sidebar {
+            box-shadow: $sidebar-overlay-shadow;
+        }
+        .layout--sidebar-visible .layout__wrap::after {
+            opacity: $sidebar-overlay-opacity;
+        }
+    }
+    /* Light */
+    .theme--light {
+        @import "./variables-light";
+        .layout__wrap::after {
+            background: $sidebar-overlay-color;
+        }
+        .layout--sidebar-visible .layout__sidebar {
+            box-shadow: $sidebar-overlay-shadow;
+        }
+        .layout--sidebar-visible .layout__wrap::after {
+            opacity: $sidebar-overlay-opacity;
+        }
+    }
+}
+
+@mixin default-sidebar {
+    .theme {
+        .layout__sidebar {
+            top: 58px;
+            height: calc(100vh - 58px);
+        }
+        
+        .layout__wrap {
+            margin-left: 0;
+        }
+
+        .layout--sidebar-visible .layout__wrap {
+            margin-left: $sidebar-width;
+        }
+    }
+}
+
+// ============== Init ===============
+// Default
+@media (min-width: 1200px) {
+    @include default-sidebar();
+}
+
+// Overlay
+@media (max-width: 1199.98px) {
+    @include overlay-sidebar();
+}

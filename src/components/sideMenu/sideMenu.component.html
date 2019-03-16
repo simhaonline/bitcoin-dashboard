@@ -1,0 +1,13 @@
+<div class="side-menu" [ngClass]="{'side-menu--open': isOpen, 'side-menu--active-child': _hasActiveRoute}">
+    <div (click)="isOpen = !isOpen" class="side-menu__nest-title">
+        <ng-template [ngTemplateOutlet]="titleElement?.templateRef"></ng-template>
+    </div>
+    
+    <ul class="nest-list" [@isOpenState]="_openState">
+        <li *ngFor="let routeElement of routeElements" [ngClass]="routeElement.class">
+            <a [routerLink]="routeElement.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                {{ routeElement.title }}
+            </a>
+        </li>
+    </ul>
+</div>

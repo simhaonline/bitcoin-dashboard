@@ -1,0 +1,41 @@
+<ng-template #recursiveList let-items="items">
+    <ng-container *ngFor="let item of items">
+        <ng-container [ngSwitch]="item.type">
+            <div class="row small-gutters" *ngSwitchCase="'row'">
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ items: item.content }"></ng-container>
+            </div>
+            <div [ngClass]="getColClass(item)" *ngSwitchCase="'column'">
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ items: item.content }"></ng-container>
+            </div>
+            <bl-single 
+                class="widget-wrap" 
+                *ngSwitchCase="WidgetType.Single" 
+                [component]="item"
+                
+                (reattach)="reattachChild($event.component)"
+                
+                (fullscreenChanged)="toggleFullscreen($event.fullscreen, $event.nestedComponent)"
+                [isFullscreen]="fullscreenItem && item.id === fullscreenItem.id"
+                
+                [highlightStatus]="itemHighlight && (itemHighlight.itemId === item.id ? itemHighlight.status : null)"
+                (itemHighlight)="itemHighlight = { itemId: $event.itemId, status: $event.highlight }"
+            ></bl-single>
+            <bl-nested 
+                class="widget-wrap" 
+                *ngSwitchCase="WidgetType.Nested" 
+                [component]="item"
+
+                (dettach)="dettachChild($event.component)"
+                
+                (fullscreenChanged)="toggleFullscreen($event.fullscreen, $event.nestedComponent)"
+
+                [highlightStatus]="itemHighlight && (itemHighlight.itemId === item.id ? itemHighlight.status : null)"
+                (itemHighlight)="itemHighlight = { itemId: $event.itemId, status: $event.highlight }"
+            ></bl-nested>
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+<div class="container-fluid container-fluid--layout">
+    <ng-container *ngTemplateOutlet="recursiveList; context:{ items: layoutItems }"></ng-container>
+</div>

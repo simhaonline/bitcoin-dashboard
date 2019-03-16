@@ -1,0 +1,37 @@
+.options {
+    padding: 0.75rem 1.25rem;
+
+    display: flex;
+    align-items: center;
+
+    &__option {
+        flex: 0 0 auto;
+    }
+
+    &__option--right {
+        margin-left: auto;
+    }
+}
+
+:host-context(.wd-single) .widget__options {
+    display: none;
+}
+
+:host-context(.wd-size--xs),
+:host-context(.wd-size--sm),
+:host-context(.wd-size--md) {
+    .options {
+        flex-wrap: wrap;
+    }
+
+    .options__option--right {
+        order: 3;
+        margin-left: 0;
+        margin-top: 1rem;
+        flex-basis: 100%;
+    }
+
+    .widget__options {
+        margin-left: auto;
+    }
+}

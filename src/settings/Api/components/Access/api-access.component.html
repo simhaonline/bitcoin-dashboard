@@ -1,0 +1,53 @@
+<form class="card-form">
+    <div class="form-group">
+        <span class="card-form__label card-form__label--top">
+            REST &amp; WebSocket API access
+        </span>
+        <div class="card-form__input-wrap">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="api__enabled">
+                <label class="custom-control-label" for="api__enabled">Check to enable API. Uncheck to disable.</label>
+            </div>
+            <p class="form-text text-muted">
+                <i class="fa fa-fw mr-2 fa-question-circle"></i>Pay attention: each time you click the checkbox and enable the API a new Access Secret will be created.
+            </p>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="card-form__label" for="api__access-key">
+            Access Key
+        </label>
+        <div class="card-form__input-wrap">
+            <input
+                type="text"
+                class="form-control"
+                [value]="accessKey"
+                id="api__access-key"
+            />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="card-form__label" for="api__access-secret">
+            Access Secret
+        </label>
+        <div class="card-form__input-wrap">
+            <input
+                type="text"
+                class="form-control"
+                [value]="accessSecret"
+                id="api__access-secret"
+            />
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <span class="card-form__label card-form__label--top">
+            Generated Code
+        </span>
+        <div class="card-form__input-wrap">
+            <img src="assets/img/example-deposit-code.png" alt="Deposit Code" />
+        </div>
+    </div>
+</form>

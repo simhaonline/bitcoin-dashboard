@@ -1,0 +1,22 @@
+<div class="theme-selector navbar-nav">
+    <a
+        class="nav-link"
+        href="javascript:;"
+        ngbTooltip="Switch to Light Theme"
+        placement="bottom"
+        *ngIf="themeStyle === 'theme--dark'"
+        (click)="setTheme('theme--light')"
+    >
+        <i class="fa fa-sun-o"></i>
+    </a>
+    <a
+        class="nav-link"
+        href="javascript:;"
+        ngbTooltip="Switch to Dark Theme"
+        placement="bottom"
+        *ngIf="themeStyle === 'theme--light'"
+        (click)="setTheme('theme--dark')"
+    >
+        <i class="fa fa-moon-o"></i>
+    </a>
+</div>

@@ -1,0 +1,135 @@
+/**
+    Position styling for widget headers for proper responsive.
+    Those styles cennot be placed in the components stylesheets
+    as the widget headers are out of scope of the widget components.
+    Maybe there is a better way to do this but for now this must do 
+    the job.
+*/
+
+/* Futures */
+.widget--futures {
+    &.wd-size--xs,
+    &.wd-size--sm,
+    &.wd-size--md {
+        .widget__options {
+            flex-basis: auto;
+        }
+    }
+}
+
+/* Positions */
+.widget--positions {
+    &.wd-size--xs,
+    &.wd-size--sm,
+    &.wd-size--md {
+        .widget__options {
+            margin-top: 0.5rem;
+        }
+
+        .widget__options__option--download-csv {
+            margin-left: auto;
+        }
+    }
+}
+
+/* Price Index */
+.widget--priceIndex {
+    &.wd-size--xs,
+    &.wd-size--sm,
+    &.wd-size--md {
+        .widget__options {
+            flex-basis: 100%;
+            margin-top: 0.25rem;
+        }
+
+        .chart-zoom__label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+/* Historical Volatility */
+.widget--historicalVolatility {
+    &.wd-size--xs,
+    &.wd-size--sm,
+    &.wd-size--md {
+        .widget__options {
+            flex-basis: 100%;
+            margin-top: 0.25rem;
+        }
+
+        .widget__options__option--chart-zoom {
+            .chart-zoom__label {
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+        }
+
+        .widget__options__option--fullscreen {
+            margin-left: auto;
+            align-self: flex-end;
+        }
+    }
+}
+
+/* BTC Options */
+.widget--btc-options-table {
+    &.wd-size--xs,
+    &.wd-size--sm,
+    &.wd-size--md {
+        .options-filter {
+            flex-wrap: wrap;
+
+            .options-filter__filter:first-child {
+                margin-right: -2.75rem;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .options-filter__filter > .btn-group {
+            flex-wrap: wrap;
+
+            .btn {
+                flex: 1 1 100%;
+                border-radius: 0.25rem;
+
+                + .btn {
+                    margin-top: 0.25rem;
+                }
+            }
+        }
+
+        wc-fullscreen {
+            align-self: flex-end;
+            flex-basis: 2rem;
+        }
+    }
+
+    &.wd-size--lg,
+    &.wd-size--xl {
+        .widget__options {
+            flex-basis: 100%;
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+    }
+
+    &.wd-size--lg {
+        .options-filter {
+            flex-wrap: wrap;
+        }
+        .options-filter__filter {
+            flex-basis: 100%;
+
+            + .options-filter__filter {
+                margin-top: 0.5rem;
+            }
+        }
+    }
+
+    .options-filter__filter {
+        white-space: nowrap;
+    }
+}

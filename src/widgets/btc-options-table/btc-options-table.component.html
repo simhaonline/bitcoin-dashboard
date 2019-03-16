@@ -1,0 +1,187 @@
+<div class="btc-options-table">
+    <div class="header-options">
+        <div class="header-options">
+            <div class="header-options__column-switches">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="bot__col-last" [(ngModel)]="enabledColumns.last" (ngModelChange)="assignActiveColumns()">
+                    <label class="custom-control-label" for="bot__col-last">Last</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="bot__iv" [(ngModel)]="enabledColumns.iv" (ngModelChange)="assignActiveColumns()">
+                    <label class="custom-control-label" for="bot__iv">IV</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="bot__vol" [(ngModel)]="enabledColumns.vol" (ngModelChange)="assignActiveColumns()">
+                    <label class="custom-control-label" for="bot__vol">Vol</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="bot__open" [(ngModel)]="enabledColumns.open" (ngModelChange)="assignActiveColumns()">
+                    <label class="custom-control-label" for="bot__open">Open</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="bot__delta" [(ngModel)]="enabledColumns.delta" (ngModelChange)="assignActiveColumns()">
+                    <label class="custom-control-label" for="bot__delta">Delta</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="bot__position" [(ngModel)]="enabledColumns.position" (ngModelChange)="assignActiveColumns()">
+                    <label class="custom-control-label" for="bot__position">Position</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dt-wrap">
+        <div class="dt-wrap__table">
+            <ngx-datatable
+                class="bootstrap table table-sm table-striped table-hover options-table"
+                [rows]="data"
+                [columns]="activeColumns"
+                [headerHeight]="26.60"
+                [rowHeight]="45"
+                [columnMode]="'force'"
+                [rowClass]="getRowClass"
+                [groupRowsBy]="'periodEnd'"
+                [groupExpansionDefault]="true"
+            >
+                <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader (toggle)="onDetailToggle($event)">
+                    <ng-template let-group="group" ngx-datatable-group-header-template>
+                        <div *ngLet="generatePeriodData(group.key) as period" class="table-header">
+                            <div class="table-header__wing">
+                                Calls
+                            </div>
+                            <div class="table-header__summary">
+                                <span>
+                                    Underlying: {{ period.symbol }} (${{ period.btcIndex | number : '1.2-2' }})
+                                </span>
+                                <span>
+                                    {{ period.periodEnd | date : 'd MMM yy' }}
+                                </span>
+                                <span>
+                                    Expires: {{ period.expireStr }}
+                                </span>
+                            </div>
+                            <div class="table-header__wing">
+                                Puts
+                            </div>                   
+                        </div>
+                    </ng-template>
+                </ngx-datatable-group-header>
+            </ngx-datatable>
+            <!--
+            <div
+                *ngFor="let period of activePeriods"
+            >
+                <div class="table-header">
+                    <div class="table-header__wing">
+                        Calls
+                    </div>
+                    <div class="table-header__summary">
+                        <span>
+                            Underlying: {{ period.symbol }} (${{ period.btcIndex | number : '1.2-2' }})
+                        </span>
+                        <span>
+                            {{ period.periodEnd | date : 'd MMM yy' }}
+                        </span>
+                        <span>
+                            Expires: {{ period.expireStr }}
+                        </span>
+                    </div>
+                    <div class="table-header__wing">
+                        Puts
+                    </div>
+                </div>
+                <ngx-datatable
+                    class="bootstrap table table-sm table-striped table-hover options-table"
+                    [rows]="period.data"
+                    [columns]="activeColumns"
+                    [headerHeight]="26.60"
+                    [rowHeight]="45"
+                    [columnMode]="'force'"
+                    [rowClass]="getRowClass"
+                >
+                </ngx-datatable>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+<ng-template #lastTmpl let-value="value">
+    <span>
+        {{ value | number : '1.4-4' }}
+    </span>
+</ng-template>
+
+<ng-template #singlePointTmpl let-value="value">
+    <span *ngIf="value">
+        {{ value | number : '1.1-1' }}
+    </span>
+    <span *ngIf="!value">
+        -
+    </span>
+</ng-template>
+
+<ng-template #doublePointTmpl let-value="value">
+    <span *ngIf="value">
+        {{ value | number : '1.2-2' }}
+    </span>
+    <span *ngIf="!value">
+        -
+    </span>
+</ng-template>
+
+<ng-template #percentTmpl let-value="value">
+    <span *ngIf="value">
+        {{ value | number : '1.1-1' }}%
+    </span>
+    <span *ngIf="!value">
+        -
+    </span>
+</ng-template>
+
+<ng-template #bidTmpl let-value="value">
+    <p class="my-0 text-success">
+        ฿{{ value.btc | number : '1.4-4' }}
+    </p>
+    <p class="my-0">
+        ${{ value.usd | number : '1.2-2' }}
+    </p>
+</ng-template>
+
+<ng-template #askTmpl let-value="value">
+    <p class="my-0 text-danger">
+        ฿{{ value.btc | number : '1.4-4' }}
+    </p>
+    <p class="my-0">
+        ${{ value.usd | number : '1.2-2' }}
+    </p>
+</ng-template>
+
+<ng-template #strikeTmpl let-value="value">
+    <p class="my-0">
+        {{ value }}
+    </p>
+</ng-template>
+
+<ng-template #posCallsTmpl let-value="value">
+    <p 
+        class="my-0"
+        [ngClass]="{
+            'text-success': value >= 0,
+            'text-danger': value < 0
+        }"
+    >
+        {{ value }}
+    </p>
+</ng-template>
+
+<ng-template #posPutsTmpl let-value="value">
+    <p
+        class="my-0"
+        [ngClass]="{
+            'text-success': value >= 0,
+            'text-danger': value < 0
+        }"
+    >
+        {{ value }}
+    </p>
+</ng-template>

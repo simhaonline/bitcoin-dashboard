@@ -1,0 +1,52 @@
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+.ps.ps--active-y {
+    padding-right: 0.3rem;
+}
+
+.ps__rail-y,
+.ps__rail-y:hover {
+    width: 0.3rem;
+}
+
+.ps > .ps__rail-y,
+.ps:hover > .ps__rail-y {
+    opacity: 1;
+}
+
+.ps__thumb-y,
+.ps__rail-y:hover .ps__thumb-y {
+    width: 0.3rem;
+    border-radius: 0;
+    right: 0;
+}
+
+/* #region Dark */
+.theme--dark {
+    @import '../bootstrap/variables-dark';
+
+    .ps--active-y > .ps__rail-y {
+        background-color: $gray-800;
+    }
+
+    .ps__thumb-y,
+    .ps__rail-y:hover .ps__thumb-y {
+        background-color: $gray-400;
+    }
+}
+/* #endregion */
+
+/* #region Light */
+.theme--light {
+    @import '../bootstrap/variables-light';
+    
+    .ps--active-y > .ps__rail-y {
+        background-color: $gray-800;
+    }
+
+    .ps__thumb-y,
+    .ps__rail-y:hover .ps__thumb-y {
+        background-color: $gray-400;
+    }
+}
+/* #endregion */

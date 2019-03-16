@@ -1,0 +1,265 @@
+<div>
+    <div class="card-header">
+        <ul class="nav nav-tabs nav-tabs--underline card-header-tabs mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    Contracts <small class="text-muted">($10)</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    BTC
+                </a>
+            </li>
+        </ul>
+    </div>
+    <ul class="list-group list-group--borderless list-group-flush">
+        <!-- START Search Input -->
+        <li class="list-group-item">
+            
+            <form>
+                <!-- START Order Type -->
+                <div class="form-group options">
+                    <span class="options__label">
+                        Order Type
+                    </span>
+                    <div class="options__opt-wrap">
+                        <div class="btn-group" role="group" aria-label="Order type">
+                            <button type="button" class="btn btn-outline-secondary active">
+                                Limit
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary">
+                                Stop Limit
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary">
+                                Market
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Order Type -->
+
+                <!-- START Trigger -->
+                <div class="form-group options">
+                    <span class="options__label">
+                        Trigger
+                    </span>
+                    <div class="options__opt-wrap">
+                        <div class="btn-group" role="group" aria-label="Order type">
+                            <button type="button" class="btn btn-outline-secondary active">
+                                Market Price
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary">
+                                Index Price
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Trigger -->
+
+                <!-- START Quantity Input -->
+                <div class="form-group input">
+                    <label class="input__label">
+                        Quantity:
+                    </label>
+                    <div class="input__wrap">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-copy fa-fw"></i>
+                                </span>
+                            </div>
+                            <input 
+                                type="number"
+                                class="form-control"
+                                id="futures-contarcts-quantity"
+                                placeholder="Enter..."
+                            />
+                            <div class="input-group-append">
+                                <span class="input-group-text xs-hidden sm-hidden">
+                                    Contracts
+                                </span>
+                                <button 
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                >
+                                    <i class="fa fa-fw fa-plus"></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                >
+                                    <i class="fa fa-fw fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="btn-group btn-group-justify" role="group" aria-label="Change quantity">
+                        <button type="button" class="btn btn-outline-secondary">-500</button>
+                        <button type="button" class="btn btn-outline-secondary">-100</button>
+                        <button type="button" class="btn btn-outline-secondary">-10</button>
+                        <button type="button" class="btn btn-outline-secondary">+10</button>
+                        <button type="button" class="btn btn-outline-secondary">+100</button>
+                        <button type="button" class="btn btn-outline-secondary">+500</button>
+                    </div>
+                </div>
+                <!-- END Quantity Input -->
+                
+                <!-- START Price Input -->
+                <div class="form-group input mb-0">
+                    <div class="input__label d-flex align-items-end">
+                        <label>
+                            Price:
+                        </label>
+                        <small class="ml-auto">
+                            <span>
+                                <span class="text-muted">Max: </span>
+                                <span>11240.45</span>
+                            </span>
+                            <span class="ml-1">
+                                <span class="text-muted">Min: </span>
+                                <span>11240.48</span>
+                            </span>
+                        </small>
+                    </div>
+                    <div class="input__wrap">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-copy fa-fw"></i>
+                                </span>
+                            </div>
+                            <input 
+                                type="number"
+                                class="form-control"
+                                id="futures-price-value"
+                                placeholder="Enter..."
+                            />
+                            <div class="input-group-append">
+                                <button 
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                >
+                                    <i class="fa fa-fw fa-plus"></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                >
+                                    <i class="fa fa-fw fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="d-flex justify-content-between my-2">
+                    <small>Current Position: </small>
+                    <small class="text-primary">
+                        <i class="fa fa-btc fa-fw"></i> 0.00000 = 0 contr.
+                    </small>
+                </p>
+
+                <div class="form-group">
+                    <div class="btn-group btn-group-justify" role="group" aria-label="Change quantity">
+                        <button type="button" class="btn btn-outline-secondary">-10</button>
+                        <button type="button" class="btn btn-outline-secondary">-1</button>
+                        <button type="button" class="btn btn-outline-secondary">-0.1</button>
+                        <button type="button" class="btn btn-outline-secondary">+0.1</button>
+                        <button type="button" class="btn btn-outline-secondary">+1</button>
+                        <button type="button" class="btn btn-outline-secondary">+10</button>
+                    </div>
+                </div>
+                <!-- END Price Input -->
+            </form>
+        </li>
+
+        <li class="list-group-item bt-0 pt-0 values">
+            <div class="value">
+                <span class="value__label">Value:</span>
+                <span class="value__value">
+                    <i class="fa fa-btc"></i> 12.12345
+                </span>
+            </div>
+
+            <div class="value">
+                <span class="value__label">Av. Balance:</span>
+                <span class="value__value">
+                    <i class="fa fa-btc"></i> 12.12345
+                </span>
+            </div>
+        </li>
+
+        <li class="list-group-item bt-0 pt-0 actions">
+            <button class="btn btn-success actions__action" type="button">
+                <span class="actions__action__title">
+                    Buy / Long
+                </span>
+                <span class="actions__action__muted">
+                    1 @ 29.00
+                </span>
+            </button>
+            <button class="btn btn-danger actions__action" type="button">
+                <span class="actions__action__title">
+                    Sell / Short
+                </span>
+                <span class="actions__action__muted">
+                    1 @ 29.00
+                </span>
+            </button>
+        </li>
+
+        <li class="list-group-item bt-0 pt-0 values">
+            <div class="value">
+                <span class="value__label">Buy Margin:</span>
+                <span class="value__value">
+                    <i class="fa fa-btc"></i> 0.0000000
+                </span>
+            </div>
+
+            <div class="value">
+                <span class="value__label">Sell Margin:</span>
+                <span class="value__value">
+                    <i class="fa fa-btc"></i> 0.0000000
+                </span>
+            </div>
+        </li>
+
+        <li class="list-group-item bt-0 pt-0 order-options">
+            <span class="custom-control custom-checkbox order-options__option">
+                <input type="checkbox" class="custom-control-input" id="checkPostOnlyOrder">
+                <label class="custom-control-label" for="checkPostOnlyOrder">Post Only Order</label>
+            </span>
+            <span class="custom-control custom-checkbox order-options__option">
+                <input type="checkbox" class="custom-control-input" id="checkHiddenOrder">
+                <label class="custom-control-label" for="checkHiddenOrder">Hidden Order</label>
+            </span>
+        </li>
+    </ul>
+
+    <div class="card-footer text-muted">
+        <p class="text-center">
+            Time in Force:
+        </p>
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active" href="javascript:;">
+                    GTC <i class="fa fa-question-circle text-muted ml-1"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:;">
+                    FOK <i class="fa fa-question-circle text-muted ml-1"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:;">
+                    IOC <i class="fa fa-question-circle text-muted ml-1"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

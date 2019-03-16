@@ -1,0 +1,38 @@
+<div 
+    class="announcements navbar-nav nav-dropdown nav-dropdown--full-mobile"
+    ngbDropdown
+    placement="bottom-right"
+>
+    <a id="announcements" class="nav-link" ngbDropdownToggle href="javascript:;">
+        <i class="fa fa-fw fa-bell-o"></i>
+    </a>
+    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="announcements">
+        <div class="dropdown-header small">
+            <span>
+                Announcements
+            </span>
+            <span class="badge badge-secondary badge-pill ml-2">{{ getUnreadCount() }}</span>
+        </div>
+        <div class="list-group m-0">
+            <a 
+                class="list-group-item list-group-item-action announcement"
+                *ngFor="let item of announcements"
+                href="#"
+            >
+                <h5 class="announcement__title">
+                    {{ item.title }}
+                </h5>
+                <span class="announcement__date">
+                    {{ item.date | date : 'dd-MMM-y, h:mm a' }}
+                </span>
+                <p class="announcement__content">
+                    {{ item.content }}
+                </p>
+            </a>
+        </div>
+        <a class="dropdown-footer" href="javascript:;">
+            See All Announcements
+            <i class="fa fa-angle-right ml-1"></i>
+        </a>
+    </div>
+</div>

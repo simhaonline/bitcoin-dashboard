@@ -27,7 +27,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/scss/bootstrap/bootstrap.scss",
+              "src/assets/scss/font-awesome/font-awesome.scss",
+              "src/assets/scss/perfect-scrollbar/perfect-scrollbar.scss",
+              "src/assets/scss/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true

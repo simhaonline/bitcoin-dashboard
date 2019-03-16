@@ -1,0 +1,6 @@
+.price-col {
+    > span + span:before {
+        content: "|";
+        margin: 0 1rem;
+    };
+}

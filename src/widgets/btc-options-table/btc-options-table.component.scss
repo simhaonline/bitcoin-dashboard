@@ -1,0 +1,118 @@
+@import '~assets/scss/bootstrap/variables-dark';
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: $gray-700;
+    border-bottom: 1px solid $gray-700;
+
+    &__wing {
+        color: #fff;
+        font-weight: bold;
+        flex: 0 0 auto;
+
+        &:first-child {
+            text-align: left;
+            padding-left: 3rem;
+        }
+        &:last-child {
+            text-align: right;
+            padding-right: 3rem;
+        }
+    }
+
+    &__summary {
+        flex: 0 1 auto;
+        padding: 0.2rem 0;
+
+        > * {
+            display: inline-block;
+            color: #fff;
+        }
+
+        > * + * {
+            margin-left: 2rem;
+        }
+
+        > *:first-child{
+            width: 17rem;
+            text-align: right;
+        }
+        > *:last-child {
+            width: 17rem;
+        }
+    }
+}
+
+.header-options {
+    display: flex;
+    padding: 0.5rem;
+    justify-content: flex-end;
+    
+    &__column-switches {
+        flex: 0 0 auto;
+        display: flex;
+
+        > .custom-control + .custom-control {
+            margin-left: 1rem;
+        }
+    }
+}
+
+:host-context(.wd-size--xs),
+:host-context(.wd-size--sm),
+:host-context(.wd-size--md),
+:host-context(.wd-size--lg) {
+    .header-options {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+/**
+    Light / Dark
+*/
+/* #region Theme Dark */
+:host-context(.theme--dark) {
+    @import '~assets/scss/variables-dark';
+
+    .table-header {
+        background-color: $gray-700;
+        border-color: $gray-700;
+    
+        &__wing {
+            color: $text-main;
+        }
+    
+        &__summary {
+            > * {
+                color: $text-main;
+            }
+        }
+    }
+}
+/* #endregion */
+
+/* #region Theme Light */
+:host-context(.theme--light) {
+    @import '~assets/scss/variables-light';
+
+    .table-header {
+        background-color: $white;
+        border-color: $gray-200;
+    
+        &__wing {
+            color: $text-main;
+        }
+    
+        &__summary {
+            > * {
+                color: $text-main;
+            }
+        }
+    }
+}
+/* #endregion */

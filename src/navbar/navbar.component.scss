@@ -1,0 +1,219 @@
+@import '~assets/scss/variables-dark';
+
+:host-context(.theme) {
+    .main-navbar {
+        border-bottom: 1px solid;
+
+        .sidebar-trigger {
+            padding: 0.7rem 0.5rem;
+
+            + .navbar-brand {
+                margin-left: 0.5rem;
+            }
+        }
+
+        .navbar-brand {
+            img {
+                margin-bottom: 3px;
+            }
+        }
+
+        .page-title {
+            margin-left: 1.5rem !important;
+
+            > * {
+                margin: 0;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+        }
+
+        .summary {
+            margin-left: 3rem;
+
+            > * {
+                display: block;
+            }
+
+            @media (max-width: 767px) {
+                margin-left: 0;
+            }
+        }
+
+        .margins {
+            margin-left: auto;
+        }
+
+        .options {
+            display: flex;
+            align-items: center;
+
+            margin-left: 2rem;
+            
+            &__item {
+                flex: 0 0 auto;
+                
+                .dropdown-toggle {
+                    white-space: nowrap;
+                }
+            }
+
+            &__item + .options__item {
+                margin-left: 0.5rem;
+            }
+
+            &__item--single {
+                .fa {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        @media (max-width: 991px) {
+            justify-content: flex-start;
+            border-bottom: 1px solid;
+
+            .navbar-collapse {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transform: translateY(100%);
+                box-shadow: 0px 10px 45px -10px rgba(0,0,0,0.55);
+                padding: 1rem;
+
+                &.show {
+                    display: flex;
+                }
+                justify-content: space-between;
+
+                /* Arrow */
+                &:after {
+                    bottom: 100%;
+                    right: 5px;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-width: 14px;
+                }
+            }
+
+            .options {
+                margin-left: auto;
+                flex-direction: row;
+
+                .options__item + .options__item  {
+                    margin-left: 1rem;
+                }
+            }
+        }
+
+        @media (max-width: 639px) {
+            .navbar-collapse {
+                flex-wrap: wrap;
+            }
+
+            .summary {
+                flex: 1 1 100%;
+            }
+
+            .margins {
+                margin: 1rem 0 0 0;
+                flex: 1 1 100%;
+            }
+        }
+    }
+
+    .page-title {
+        @media (max-width: 767px) {
+            display: none;
+        }
+    }
+
+    .collapsed-only {
+        @media (min-width: 992px) {
+            display: none;
+        }
+    }
+
+    .uncollapsed-only {
+        @media (max-width: 991px) {
+            display: none;
+        }
+    }
+}
+
+/* #region Theme Dark */
+:host-context(.theme--dark) {
+    @import '~assets/scss/variables-dark';
+
+    .main-navbar {
+        border-color: $navbar-border-color;
+        background-color: $navbar-background-color;
+
+        .sidebar-trigger {
+            color: $text-muted;
+
+            &:hover,
+            &:focus {
+                color: $link-hover-color;
+            }
+        }
+
+        @media (max-width: 991px) {
+            border-bottom-color: $gray-700;
+
+            .navbar-collapse {
+                background-color: $gray-700;
+
+                /* Arrow */
+                &:after {
+                    border-color: rgba(136, 183, 213, 0);
+                    border-bottom-color: $gray-700;
+                }
+            }
+        }
+    }
+}
+/* #endregion */
+
+/* #region Theme Light */
+:host-context(.theme--light) {
+    @import '~assets/scss/variables-light';
+
+    .main-navbar {
+        border-color: $navbar-border-color;
+        background-color: $navbar-background-color;
+
+        .sidebar-trigger {
+            color: $text-muted;
+
+            &:hover,
+            &:focus {
+                color: lighten($text-muted, 15%);
+            }
+        }
+
+        @media (max-width: 991px) {
+            border-bottom-color: $gray-800;
+
+            .navbar-collapse {
+                background-color: $gray-800;
+
+                /* Arrow */
+                &:after {
+                    border-color: rgba(136, 183, 213, 0);
+                    border-bottom-color: $gray-800;
+                }
+            }
+        }
+
+        .page-title > * {
+            color: $white;
+        }
+    }
+}
+/* #endregion */

@@ -1,0 +1,46 @@
+.margin {
+    display: flex;
+    flex-direction: column;
+
+    &__entry {
+        white-space: nowrap;
+    }
+}
+
+.margin-entry {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 10px;
+
+    + .margin-entry {
+        margin-top: 0.2rem;
+    }
+
+    &__title {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    &__bar {
+        flex: 0 0 100px;
+        margin-left: 0.5rem;
+
+        .progress {
+            height: 4px;
+            border-radius: 0;
+        }
+
+        @media (max-width: 639px) {
+            flex: 0 1 calc(100% - 130px);
+        }
+    }
+
+    &__value {
+        margin-left: 0.5rem;
+
+        flex: 0 0 auto;
+        white-space: nowrap;
+        color: #fff;
+    }
+}

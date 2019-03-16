@@ -1,0 +1,56 @@
+<div class="wd-table" *ngIf="accountData">
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th class="text-muted text-right">Equity</th>
+                    <th class="text-muted text-right">Cash Balance</th>
+                    <th class="text-muted text-right">Available Balance</th>
+                    <th class="text-muted text-right">Mgin Balance</th>
+                    <th class="text-muted text-right">Initial Margin</th>
+                    <th class="text-muted text-right">Maintenance Margin</th>
+                    <th class="text-muted text-right">PNL</th>
+                    <th class="text-muted text-right">Session UPL</th>
+                    <th style="width: 30px"></th>
+                    <th class="text-muted text-right">Session RPL</th>
+                    <th class="text-muted text-right">* | Delta Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-right text-inverse">
+                        <i class="fa fa-btc"></i> {{ accountData.equity | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ accountData.balance | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ accountData.availableFunds | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ accountData.balance | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ accountData.initialMargin | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ accountData.maintenanceMargin | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-success">
+                        <i class="fa fa-btc"></i> {{ accountData.PNL | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-danger">
+                        <i class="fa fa-btc"></i> {{ accountData.SUPL | number : '1.4-4' }}
+                    </td>
+                    <td></td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ accountData.SRPL | number : '1.4-4' }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ accountData.deltaTotal | number : '1.4-4' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

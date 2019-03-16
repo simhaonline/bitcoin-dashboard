@@ -1,0 +1,14 @@
+@import "~assets/scss/bootstrap/variables-dark";
+
+.options-filter {
+    display: flex;
+    align-items: center;
+
+    .fa {
+        color: $gray-200;
+    }
+
+    &__filter + .options-filter__filter {
+        margin-left: 0.5rem;
+    }
+}

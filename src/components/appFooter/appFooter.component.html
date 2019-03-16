@@ -1,0 +1,15 @@
+<div class="index-footer">
+    <div class="index-footer__item index" *ngFor="let index of indexes">
+        <strong class="index__title">{{index.name}}</strong>
+        <span 
+            class="index__value"
+            [ngClass]="{
+                'text-success': index.delta > 0,
+                'text-danger': index.delta < 0
+            }"
+        >
+            ${{index.value ? (index.value | round:2) : '-'}}
+        </span>
+        <span class="index__value" *ngIf="index.date">{{index.date | date : 'HH:mm:ss'}}</span>
+    </div>
+</div>

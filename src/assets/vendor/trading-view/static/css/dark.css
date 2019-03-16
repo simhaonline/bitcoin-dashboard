@@ -1,0 +1,191 @@
+.chart-page .tv-side-toolbar {
+    border-right: none; 
+}
+
+/* Left Panel Buttons */
+.chart-page .tv-side-toolbar .tools-group .button.selected {
+    border-color: #415061;
+}
+
+.chart-page .tv-side-toolbar .tools-group .button.selected .main {
+    background-color: #313D4F;
+}
+
+/* Strzałka tutaj powinna być */
+.chart-page .tv-side-toolbar .tools-group .button.selected .side {
+    background: #313d4f;
+    border-left: 1px solid #415061;
+} 
+
+.chart-page .tv-side-toolbar .tools-group .button .main.text-as-icon {
+    color: #7f8fa4;
+}
+
+.chart-page .tv-side-toolbar .button svg {
+    fill: #7f8fa4;
+}
+
+.chart-page .tv-side-toolbar .button.selected svg {
+    fill: #ffffff;
+}
+
+/* Hover */
+.feature-no-touch .chart-page .tv-side-toolbar .tools-group .button:hover {
+    background-color: #313d4f;
+    border-color: #415061;
+}
+
+.feature-no-touch .chart-page .tv-side-toolbar .tools-group .button:hover .side {
+    border-left: 1px solid #415061;
+}
+
+/* Close Panel (TODO: Strzałka w background) */
+.chart-page .tv-close-panel {
+    background-color: #273142;
+    border-color: #415061;
+}
+
+/* Delimiter */
+.chart-page .tv-side-toolbar .tools-group.bottom-delimiter:after, 
+.chart-page .tv-side-toolbar .tools-group:not(:first-child):not(.no-delimiter):before {
+    background: #313d4f;
+}
+
+/* Layout Parts */
+.chart-page .layout__area--top {
+    background: #313d4f;
+}
+
+.chart-page .layout__area--center {
+    background: #313d4f;
+}
+
+/* Chart Container */
+.chart-page .chart-container {
+    border-color: #313d4f;
+}
+
+/* Popup list */
+.chart-page .charts-popup-list {
+    background: #273142;
+    border: 1px solid #313d4f;
+}
+
+.chart-page .charts-popup-list .item,
+.chart-page .charts-popup-list .item span {
+    color: #677688;
+}
+
+.chart-page .charts-popup-list .item svg {
+    fill: #7f8fa4;
+}
+
+.chart-page .charts-popup-list .item:hover,
+.chart-page .charts-popup-list .item.active {
+    background: #323E50;
+}
+
+.chart-page .charts-popup-list .item:hover,
+.chart-page .charts-popup-list .item:hover span,
+.chart-page .charts-popup-list .item.active,
+.chart-page .charts-popup-list .item.active span {
+    color: #fff;
+}
+
+.chart-page .charts-popup-list .item:hover svg,
+.chart-page .charts-popup-list .item.active svg {
+    fill: #fff;
+}
+
+.chart-page .charts-popup-list .separator {
+    border-color: #313d4f;
+}
+
+.chart-page .charts-popup-list .to-quick svg {
+    fill: #fff !important;
+}
+
+.chart-page .charts-popup-list .to-quick:hover svg {
+    fill: #7f8fa4 !important;
+}
+
+/* Top Inputs */
+.chart-page .symbol-edit-widget .symbol-edit-wrap.expanded {
+    box-shadow: 0 0 10px 10px #313d4f;
+}
+
+.chart-page input.symbol-edit {
+    background-color: #222c3c;
+    border: 1px solid #3b495f;
+    color: #fff;
+    font-weight: normal;
+}
+.chart-page .header-chart-panel .button,
+.chart-page .favored-list-container span {
+    background: #222c3c;
+    border: 1px solid #3b495f;
+    color: #fff;
+}
+
+.chart-page .header-chart-panel .button + .button,
+.chart-page .favored-list-container span + span {
+    margin-left: -1px;
+}
+
+.chart-page .header-chart-panel .button.active,
+.chart-page .header-chart-panel .button:hover,
+.chart-page .favored-list-container span.active,
+.chart-page .favored-list-container span.selected,
+.chart-page .favored-list-container span:active,
+.chart-page .favored-list-container span:hover {
+    background: #313d4f !important;
+    border: 1px solid #3b495f;
+    color: #fff;
+}
+.chart-page .header-chart-panel .button:hover:before,
+.chart-page .favored-list-container span:hover:before {
+    content: none !important;
+}
+
+.chart-page .favored-list-container span.submenu i {
+    background: #7f8fa4;
+}
+.chart-page .favored-list-container span.submenu:hover i {
+    background: #fff;
+}
+
+.chart-page .header-chart-panel .button svg,
+.chart-page .favored-list-container svg {
+    fill: #7f8fa4;
+}
+
+.chart-page .header-chart-panel .button.active svg,
+.chart-page .header-chart-panel .button:hover svg,
+.chart-page .favored-list-container span.selected svg,
+.chart-page .favored-list-container span:hover svg {
+    fill: #fff;
+}
+
+.chart-page .header-chart-panel .button.disabled {
+    background: #222c3c !important;
+    border: 1px solid #3b495f;
+    color: #fff !important;
+    opacity: 0.65 !important;
+}
+.chart-page .header-chart-panel .button.disabled svg {
+    fill: #7f8fa4;
+}
+
+/* Bottom Chart Options */
+.feature-no-touch .pane-legend-line:hover .pane-legend-icon,
+.chart-page .pane-legend .pane-legend-icon {
+    opacity: 0.4;
+}
+
+.chart-page .pane-legend .pane-legend-icon:hover {
+    opacity: 0.8;
+}
+
+.chart-page .pane-legend .pane-legend-icon svg {
+    fill: #7f8fa4;
+}

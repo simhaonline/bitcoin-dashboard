@@ -1,0 +1,105 @@
+<div class="summary">
+    <!-- BTC Index -->
+    <div class="summary-entry">
+        <abbr
+            class="summary-entry__title" 
+            data-original-title="BTC Price Index" 
+            data-content="Bitcoin Price Index"
+        >
+            BTC Index
+        </abbr>
+        <p class="summary-entry__value">
+            <i
+                class="fa mr-2"
+                [ngClass]="{ 
+                    'fa-caret-down': data.btcDelta < 0, 
+                    'text-danger': data.btcDelta < 0,
+                    'fa-caret-up': data.btcDelta > 0,
+                    'text-success': data.btcDelta > 0,
+                    'fa-caret-right': data.btcDelta == 0
+                }"
+            ></i>
+            {{ data.btcIndex ? (data.btcIndex | number : '1.2-2') : '-' }}
+        </p>
+    </div>
+
+    <!-- Equity -->
+    <div class="summary-entry" *ngIf="data.equity !== undefined">
+        <abbr
+            class="summary-entry__title" 
+            data-original-title="something" 
+            data-content="something something"
+        >
+            Equity
+        </abbr>
+        <p class="summary-entry__value">
+            <i class="fa fa-bitcoin mr-2"></i>
+            {{ data.equity | number : '1.4-4' }}
+        </p>
+    </div>
+
+    <!-- Balance -->
+    <div class="summary-entry" *ngIf="data.balance !== undefined">
+        <abbr
+            class="summary-entry__title" 
+            data-original-title="something" 
+            data-content="something something"
+        >
+            Balance
+        </abbr>
+        <p class="summary-entry__value">
+            <i class="fa fa-bitcoin mr-2"></i>
+            {{ data.balance | number : '1.4-4' }}
+        </p>
+    </div>
+
+    <!-- Available -->
+    <div class="summary-entry" *ngIf="data.available !== undefined">
+        <abbr
+            class="summary-entry__title" 
+            data-original-title="something" 
+            data-content="something something"
+        >
+            Available
+        </abbr>
+        <p class="summary-entry__value">
+            <i class="fa fa-bitcoin mr-2"></i>
+            {{ data.available | number : '1.4-4' }}
+        </p>
+    </div>
+
+    <!-- Status -->
+    <div class="summary-entry summary-entry--hideable">
+        <abbr
+            class="summary-entry__title" 
+            data-original-title="something" 
+            data-content="something something"
+        >
+            Status
+        </abbr>
+        <p class="summary-entry__value">
+            <i 
+                class="fa fa-circle mr-2"
+                [ngClass]="{
+                    'text-success': data.connected,
+                    'text-danger': !data.connected
+                }"
+            ></i>
+            {{ data.connected ? 'Connected' : 'Not Connected' }}
+        </p>
+    </div>
+
+    <!-- Available -->
+    <div class="summary-entry summary-entry--hideable">
+        <abbr
+            class="summary-entry__title" 
+            data-original-title="something" 
+            data-content="something something"
+        >
+            TIME (UTC)
+        </abbr>
+        <p class="summary-entry__value">
+            {{ data.time ? (data.time | date : 'dd-MM-yyyy HH:mm:ss') : '-' }}
+        </p>
+    </div>
+</div>

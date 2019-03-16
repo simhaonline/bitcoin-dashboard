@@ -1,0 +1,136 @@
+@mixin active($text-color, $accent-color) {
+    box-shadow: inset 5px 0px 0px 0px $accent-color;
+    color: $text-color;
+    text-decoration: none;
+}
+
+.theme {
+    .sidebar-nav {
+        padding: 1rem 0;
+    }
+    
+    .sidebar-nav__item {
+        > a {
+            display: block;
+            padding: 0.5rem 1.1rem;
+            transition: box-shadow 0.1s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+                        color 0.1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+    }
+    
+    .sidebar-nav__item--sub {
+        > a {
+            padding: 0.5rem 1.1rem 0.5rem 2.7rem;
+        }
+    }
+    
+    .sidebar-nav__separator {
+        display: block;
+        padding: 1rem 0;
+    
+        &--bordered {
+            border-bottom: 1px solid;
+        }
+    }
+    
+    .side-menu .side-menu__nest-title .sidebar-nav__item {
+        > a {
+            &:hover {
+                box-shadow: none;
+                color: #fff;
+            }
+    
+            display: flex;
+            align-items: center;
+    
+            &::after {
+                font: normal normal normal 14px/1 FontAwesome;
+                font-size: inherit;
+                margin-left: auto;
+                padding-left: 5px;
+                width: 1.28571429em;
+                content: "\f104"
+            }
+        }
+    }
+    
+    .side-menu.side-menu--open .side-menu__nest-title .sidebar-nav__item > a::after {
+        content: "\f107";
+    }
+}
+
+@mixin side-menu-colors(
+    $text-color,
+    $active-text-color,
+    $separator-color,
+    $accent-color
+) {
+    .sidebar-nav__item > a {
+        box-shadow: inset 0px 0px 0px 0px $accent-color;
+        color: $text-color;
+
+        &.active,
+        &:hover {
+            @include active(
+                $active-text-color,
+                $accent-color
+            );
+        }
+
+        &.active > i {
+            color: $accent-color;
+        }
+    }
+
+    .sidebar-nav__separator--bordered {
+        border-bottom-color: $separator-color;
+    }
+
+    .side-menu .side-menu__nest-title .sidebar-nav__item > a:hover {
+        color: $active-text-color;
+    }
+
+    // Active inside, but closed menu
+    .side-menu--active-child:not(.side-menu--open) .side-menu__nest-title .sidebar-nav__item > a {
+        @include active(
+            $active-text-color,
+            $accent-color
+        );
+    }
+}
+
+/* #region Dark */
+.theme--dark {
+    @import './variables-dark';
+
+    @include side-menu-colors(
+        $sidebar-nav-text-color,
+        $sidebar-nav-text-active-color,
+        $sidebar-nav-separator-color,
+        $sidebar-nav-accent-color
+    );
+}
+/* #endregion */
+
+/* #region Light */    
+.theme--light {
+    @import './variables-light';
+
+    @include side-menu-colors(
+        $sidebar-nav-text-color,
+        $sidebar-nav-text-active-color,
+        $sidebar-nav-separator-color,
+        $sidebar-nav-accent-color
+    );
+
+    .sidebar-nav.custom-scrollbars {
+        &::-webkit-scrollbar-track {
+            background-color: map-get($grays, 800);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: map-get($grays, 700);
+        }
+    }
+}
+/* #endregion */

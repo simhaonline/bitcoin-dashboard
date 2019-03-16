@@ -1,0 +1,104 @@
+<div class="user-menu navbar-nav nav-dropdown" ngbDropdown placement="bottom-right">
+    <a id="user-menu" class="nav-link" ngbDropdownToggle href="javascript:;">
+        <i class="fa fa-fw fa-user-circle"></i>
+        <i class="fa ml-1 fa-angle-down"></i>
+    </a>
+    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="user-menu">
+        <div class="dropdown-header user-name">
+            <strong class="small user-name__label text-uppercase">
+                Sign as:
+            </strong>
+            <div class="user-name__value">
+                <i class="fa fa-envelope-o fa-fw text-muted mr-2"></i>
+                maciej.kurbanski@outlook.com
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+
+        <a
+            [routerLink]="['/settings/my-account']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            My Account
+        </a>
+        <a
+            [routerLink]="['/settings']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            Settings
+        </a>
+        <a
+            [routerLink]="['/settings/security']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            Security
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a
+            [routerLink]="['/settings/withdraw']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            Withdraw
+        </a>
+        <a
+            [routerLink]="['/settings/deposit']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            Deposit
+        </a>
+        
+        <div class="dropdown-divider"></div>
+
+        <a
+            [routerLink]="['/settings/api']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            API
+        </a>
+        <a
+            [routerLink]="['/settings/transaction-log']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            Transaction Log
+        </a>
+        <a
+            [routerLink]="['/settings/statistics']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            Statistics
+        </a>
+        <a
+            [routerLink]="['/settings/affilate']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="dropdown-item"
+        >
+            Affilate
+        </a>
+        
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" href="javascript:;">
+            <i class="fa fa-sign-out mr-2"></i>
+            Sign Out
+        </a>
+    </div>
+</div>

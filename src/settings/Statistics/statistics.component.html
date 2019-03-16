@@ -1,0 +1,47 @@
+<div class="card card--plain card--multiple">
+    <div class="card-header">
+        Statistics
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase">
+                        Statistics period
+                    </th>
+                    <th class="text-center text-uppercase" colspan="2">
+                        BTC Futures trading volume
+                    </th>
+                    <th class="text-center text-uppercase">
+                        BTC Options trading volume
+                    </th>
+                    <th class="text-center text-uppercase">
+                        Payed fees
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stat of stats">
+                    <td class="text-center text-inverse">
+                        {{ stat.period }}
+                    </td>
+                    <td class="text-right">
+                        <i class="fa fa-btc"></i>
+                        <span class="text-inverse">{{ stat.futuresVolume.btc | number : '1.7-7' }}</span>
+                    </td>
+                    <td class="text-right">
+                        <i class="fa fa-usd"></i>
+                        <span class="text-inverse">{{ stat.futuresVolume.usd | number : '1.2-2' }}</span>
+                    </td>
+                    <td class="text-right text-inverse">
+                        {{ stat.optionsVolume }}
+                    </td>
+                    <td class="text-right">
+                        <i class="fa fa-btc"></i>
+                        <span class="text-inverse">{{ stat.payedFees | number : '1.4-4' }}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="navigator navbar-nav" ngbDropdown>
+    <a id="navbar-navigator" class="nav-link" ngbDropdownToggle href="javascript:;">
+        {{ selectedItem.name }} <i class="fa fa-angle-down ml-1"></i>
+    </a>
+    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbar-navigator">
+        <div
+            *ngFor="let item of items"
+            class="dropdown-item"
+            [ngClass]="{ 
+                'active': item === selectedItem, 
+                'dropdown-item': item.type === 'link', 
+                'dropdown-divider': item.type === 'separator' 
+            }"
+        >
+            <a
+                href="javascript:;"
+                *ngIf="item.type === 'link'"
+                class="navigator-dropdown-link"
+            >
+                <i class="{{ item.iconClass }} mr-2"></i>
+                {{ item.name }}
+            </a>
+        </div>
+    </div>
+</div>

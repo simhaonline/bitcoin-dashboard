@@ -1,0 +1,88 @@
+<div class="wd-table">
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th class="text-muted">Instrument</th>
+                    <th class="text-right text-muted">Size</th>
+                    <th class="text-right text-muted">Size (<i class="fa fa-btc"></i>)</th>
+                    <th class="text-muted">Avg. Price</th>
+                    <th class="text-muted">Mark Price</th>
+                    <th class="text-muted">Est. Liq. Price</th>
+                    <th class="text-muted">PNL</th>
+                    <th class="text-muted">Session UPL</th>
+                    <th class="text-muted">Session RPL</th>
+                    <th class="text-muted">Initial Margin</th>
+                    <th class="text-muted">Maintenance Margin</th>
+                    <th class="text-muted">Settlement Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of data">
+                    <td class="text-success">
+                        {{ row.instrument }}
+                    </td>
+                    <td class="text-right text-success">
+                        {{ row.size | round }}
+                    </td>
+                    <td class="text-right text-success">
+                        <i class="fa fa-btc"></i> {{ row.sizeBtc | round : 4 }}
+                    </td>
+                    <td class="text-muted">
+                        <i class="fa fa-dollar"></i> {{ row.avgPrice | round: 2 }}
+                    </td>
+                    <td class="text-muted">
+                        <i class="fa fa-dollar"></i> {{ row.markPrice | round : 4 }}
+                    </td>
+                    <td class="text-danger">
+                        <i class="fa fa-dollar"></i> {{ row.estLiqPrice | round : 2 }}
+                    </td>
+                    <td class="text-danger">
+                        <i class="fa fa-btc"></i> {{ row.pnl | round : 4 }}
+                    </td>
+                    <td class="text-success">
+                        <i class="fa fa-btc"></i> {{ row.sessionUpl | round : 4 }}
+                    </td>
+                    <td class="text-danger">
+                        <i class="fa fa-btc"></i> {{ row.sessionRpl | round : 4 }}
+                    </td>
+                    <td class="text-muted">
+                        <i class="fa fa-btc"></i> {{ row.initialMargin | round : 4 }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-btc"></i> {{ row.maintenanceMargin | round : 4 }}
+                    </td>
+                    <td class="text-right text-muted">
+                        <i class="fa fa-dollar"></i> {{ row.settlementPrice | round : 2 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">
+                        <strong class="text-uppercase text-inverse">SUM</strong>
+                    </td>
+                    <td class="text-right text-success">
+                        <i class="fa fa-btc"></i> <strong>{{ sum.size | round }}</strong>
+                    </td>
+                    <td class="text-right text-success">
+                        <i class="fa fa-btc"></i> <strong>{{ sum.sizeBtc | round : 4 }}</strong>
+                    </td>
+                    <td colspan="3"></td>
+                    <td class="text-danger">
+                        <i class="fa fa-btc"></i> <strong>{{ sum.pnl | round : 4 }}</strong>
+                    </td>
+                    <td class="text-success">
+                        <i class="fa fa-btc"></i> <strong>{{ sum.sessionUpl | round : 4 }}</strong>
+                    </td>
+                    <td></td>
+                    <td class="text-inverse">
+                        <i class="fa fa-btc"></i> <strong>{{ sum.initialMargin | round : 4 }}</strong>
+                    </td>
+                    <td class="text-inverse text-right">
+                        <i class="fa fa-btc"></i> <strong>{{ sum.maintenanceMargin | round : 4 }}</strong>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

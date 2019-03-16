@@ -1,0 +1,24 @@
+@import 'bootstrap/variables-dark';
+
+// Overall
+$text-main: #fff; 
+
+// Navbar
+$navbar-background-color: $gray-900;
+$navbar-border-color: $gray-900;
+
+$highlightColor: #1e90ff;
+$underlineTabAccent: #33AE9A;
+
+// Sidebar
+$sidebar-background-color: $gray-900;
+$sidebar-border-style: solid $card-border-color;
+$sidebar-overlay-color: $gray-900;
+$sidebar-overlay-opacity: 0.5;
+$sidebar-overlay-shadow: 10px 0px 45px 0px rgba(0, 0, 0, 0.75);
+
+// Sidebar Nav
+$sidebar-nav-accent-color: $teal;
+$sidebar-nav-text-color: $text-muted;
+$sidebar-nav-text-active-color: white;
+$sidebar-nav-separator-color: $gray-600;

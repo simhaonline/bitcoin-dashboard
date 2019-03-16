@@ -1,0 +1,87 @@
+@import './../variables-light';
+
+// Button Group Overrides
+.btn.btn-outline-secondary {
+    color: $body-color;
+    border-color: $gray-300;
+
+    &:not(.disabled):not(:disabled) {
+        &:hover,
+        &.active {
+            background-color: $gray-200;
+            color: $black;
+            border-color: $gray-300;
+        }
+    }
+}
+
+.btn-group {
+    .btn.btn-outline-secondary {
+        color: $body-color;
+        border-color: $gray-300;
+    }
+}
+
+// Card Overrrides
+.card {
+    &-header {
+        background: none;
+    }
+}
+
+.btn-link.text-muted.active {
+    color: $black !important;
+}
+
+.nav-tabs-scroll {
+    &::-webkit-scrollbar-thumb {
+        background-color: $gray-400;
+    }
+}
+
+.nav-tabs.nav-tabs--underline {
+    .nav-link {
+        color: $text-muted;
+
+        &.active {
+            border-color: transparent;
+            border-bottom-color: $underlineTabAccent;
+            box-shadow: inset 2px -6px 0px -3px $underlineTabAccent;
+            color: $black;
+        }
+    }
+}
+
+.table {
+    th {
+        border-top: none;
+    }
+
+    td {
+        border-top: none;
+    }
+}
+
+.table-bordered {
+    th, td {
+        border-color: $gray-600 !important;
+    }
+}
+
+.navbar-nav .nav-link {
+    color: $text-muted;
+
+    &:focus,
+    &:hover {
+        color: $navbar-light-hover-color;
+    }
+
+    &:active,
+    &.active {
+        color: $navbar-light-active-color;
+    }
+
+    &.disabled {
+        color: $navbar-light-disabled-color !important;
+    }
+}

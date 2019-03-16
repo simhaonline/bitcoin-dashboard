@@ -1,0 +1,224 @@
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+.ngx-datatable {
+    &.table {
+        .datatable-header-cell {
+            font-weight: bold;
+            padding: 0.75rem;
+        }
+    }
+    &.table.table-sm {
+        .datatable-header-cell {
+            padding: 0.3rem;
+            font-size: 85%;
+        }
+        .datatable-body-cell {
+            padding: 0.3rem;
+        }
+    }
+
+    .datatable-body {
+        &::-webkit-scrollbar {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+    
+        &::-webkit-scrollbar-track {
+            border-left: 1px solid;
+        }
+    }
+
+    .sortable {
+        .sort-btn{
+            vertical-align: baseline !important;
+        }
+        .sort-btn:before {
+            font: normal normal normal 10px/1 FontAwesome !important;
+            margin-left: 5px;
+        }
+        .sort-btn:before {
+            content: "\f0dc";
+        }
+        .sort-btn.sort-asc:before {
+            content: "\f0de";
+        }
+        .sort-btn.sort-desc:before {
+            content: "\f0dd";
+        }
+    }
+}
+
+.options-table {
+    margin-bottom: 0 !important;
+
+    &.ngx-datatable .datatable-body .datatable-scroll {
+        display: block;
+    }
+
+    .datatable-header-inner .datatable-header-cell {
+        text-align: center;
+    }
+
+    .datatable-body-row .datatable-body-cell {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    + .options-table .datatable-header {
+        display: none;
+    }
+
+    .datatable-header-cell,
+    .datatable-body-cell {
+        &.col-pos {
+            text-align: center;
+
+            &--calls {
+                border-width: 0 1px 1px 0;
+            }
+
+            &--puts {
+                border-width: 0 0 1px 1px;
+            }
+        }
+
+        &.col-strike {
+            text-align: center;
+            font-weight: bold;
+            border-width: 0 0 1px 0;
+        }
+    }
+}
+
+/* #region Dark */
+.theme--dark {
+    @import '../bootstrap/variables-dark';
+    @import '../variables-dark';
+
+    .ngx-datatable {
+        &.table.table-striped {
+            .datatable-body-row {
+                background-color: $gray-800; 
+            }
+            .datatable-body-row:nth-child(even) {
+                background-color: $gray-700; 
+            }
+        }
+        &.table.table-striped.table-hover,
+        &.table.table-hover {
+            .datatable-body-row:hover {
+                background-color: rgba(#fff, 0.03);
+            }
+        }
+    
+        .datatable-body {
+            &::-webkit-scrollbar-track {
+                background-color: $gray-700;
+                border-color: $gray-800;
+            }
+             
+            &::-webkit-scrollbar-thumb {
+                background-color: $gray-400;
+            }
+        }
+    
+        .sortable {
+            .sort-btn.sort-asc:before {
+                color: $teal;
+            }
+            .sort-btn.sort-desc:before {
+                color: $teal;
+            }
+        }
+    }
+
+    .options-table {
+        .datatable-header-cell,
+        .datatable-body-cell {
+            &.col-strike,
+            &.col-pos {
+                background-color: $gray-500;
+                border-color: $gray-700;
+            }
+    
+            &.col-strike {
+                color: $white;
+            }
+        }
+    
+        .cell--highlight {
+            background-color: rgba($green, 0.1);
+        }
+    }
+}
+/* #endregion */
+
+/* #region Light */
+.theme--light {
+    @import '../bootstrap/variables-light';
+    @import '../variables-light';
+    
+    .ngx-datatable {
+        &.table.table-striped {
+            .datatable-body-row {
+                background-color: $white;
+            }
+            .datatable-body-row:nth-child(even) {
+                background-color: $gray-100; 
+            }
+        }
+        &.table.table-striped.table-hover,
+        &.table.table-hover {
+            .datatable-body-row:hover {
+                background-color: rgba($black, 0.05);
+            }
+        }
+
+        .datatable-group-header {
+            border-top: 1px solid $gray-200;
+        }
+
+        .datatable-body {
+            &::-webkit-scrollbar-track {
+                background-color: $gray-200;
+                border-color: $gray-300;
+            }
+             
+            &::-webkit-scrollbar-thumb {
+                background-color: $gray-400;
+            }
+        }
+    
+        .sortable {
+            .sort-btn.sort-asc:before {
+                color: $teal;
+            }
+            .sort-btn.sort-desc:before {
+                color: $teal;
+            }
+        }
+    }
+
+    .options-table {
+        .datatable-header-cell,
+        .datatable-body-cell {
+            &.col-strike,
+            &.col-pos {
+                background-color: $gray-200;
+                border-color: $white;
+            }
+    
+            &.col-strike {
+                color: $body-color;
+            }
+        }
+    
+        .cell--highlight {
+            background-color: rgba($green, 0.1);
+        }
+    }
+}
+/* #endregion */

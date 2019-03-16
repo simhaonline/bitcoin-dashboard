@@ -1,0 +1,85 @@
+<div 
+    class="wd-nested custom-scrollbars widget card"
+    widget-size
+    [ngClass]="{ 
+        'widget--collapsed': isCollapsed, 
+        'widget--highlighted': !!highlightStatus,
+        'widget--highlighted--blink': highlightStatus === 'scroll-blink'  
+    }"
+>
+    <!--       Multiple Widgets         -->
+    <div class="card-header widget__header" *ngIf="component.content.length > 1">
+        <a class="widget__title" href="javascript:;" (click)="toggleCollapse()">
+            <span class="widget__header__collapse">
+                <i class="fa fa-angle-down fa-fw" *ngIf="!isCollapsed"></i>
+                <i class="fa fa-angle-right fa-fw" *ngIf="isCollapsed"></i>
+            </span>
+            {{ component.title }}
+        </a>
+        <div 
+            class="nav-tabs-scroll widget__tabs card-header-tabs"
+            [ngClass]="{
+                'nav-tabs': !isCollapsed,
+                'card-header-tabs': !isCollapsed,
+                'nav-pills': isCollapsed,
+                'card-header-pills': isCollapsed
+            }"
+        >
+            <ul 
+                class="nav nav-tabs "
+                [ngClass]="{
+                    'nav-tabs--underline': !isCollapsed
+                }"
+            >
+                <li *ngFor="let child of component.content | orderBy: 'childIndex'" class="nav-item">
+                    <a 
+                        class="nav-link"
+                        [ngClass]="{ 'active': child.id === activeComponentId }"
+                        href="javascript:;"
+                        (click)="setActiveTab(child.id)"
+                    >
+                        <span 
+                            class="widget__tab__action"
+                            ngbTooltip="Dettach as a Separate Window"
+                            placement="top"
+                            (click)="onDettachClick($event, child)"
+                        >
+                            <i class="fa fa-fw fa-window-maximize"></i>
+                        </span>
+                        {{ child.title }}
+                        <span class="text-muted ml-1" *ngIf="child.subtitle">
+                            {{ child.subtitle }}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--        Single Widget       -->
+    <div class="card-header widget__header widget__header--single" *ngIf="component.content.length === 1">
+        <a class="widget__title" href="javascript:;" (click)="toggleCollapse()">
+            <span class="widget__header__collapse">
+                <i class="fa fa-angle-down fa-fw" *ngIf="!isCollapsed"></i>
+                <i class="fa fa-angle-right fa-fw" *ngIf="isCollapsed"></i>
+            </span>
+            {{ component.title }}:
+        </a>
+        <span class="widget__title">
+            <span>{{ component.content[0].title }}</span>
+            <span class="text-muted ml-1">
+                {{ component.content[0].subtitle }}
+            </span>
+        </span>
+        <div class="widget__options">
+            <ng-template appWidgetOptionsHost></ng-template>
+        </div>
+    </div>
+
+    <div class="widget__content" [@collapse]="collapseState">
+        <ng-container *ngFor="let child of component.content">
+            <ng-container *ngIf="child.id === activeComponentId">
+                <bl-render [component]="child" (componentInstance)="onComponentInstance($event)"></bl-render>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="margin">
+    <div class="margin__entry margin-entry">
+        <abbr class="margin-entry__title">
+            Initial Margin
+        </abbr>
+        <div class="margin-entry__bar progress-slim">
+            <ngb-progressbar type="success" [value]="data.initialPercentage" height="4px"></ngb-progressbar>
+        </div>
+        <div class="margin-entry__value">
+            {{ data.initialPercentage | round : 0 }}%
+        </div>
+    </div>
+    <div class="margin__entry margin-entry">
+        <abbr class="margin-entry__title">
+            Maintenance Margin
+        </abbr>
+        <div class="margin-entry__bar progress-slim">
+            <ngb-progressbar type="danger" [value]="data.maintenancePercentage" height="4px"></ngb-progressbar>
+        </div>
+        <div class="margin-entry__value">
+            {{ data.maintenancePercentage | round : 0 }}%
+        </div>
+    </div>
+</div>

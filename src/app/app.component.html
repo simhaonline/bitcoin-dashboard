@@ -1,21 +1,178 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="layout app-layout" [(appSidebarOpen)]="sidebarVisible">
+    <aside class="layout__sidebar sidebar">
+        <div class="sidebar__section sidebar__section--overlay-only sidebar-header">
+            <a
+                class="sidebar-header__trigger text-muted"
+                href="javascript:;"
+                (click)="sidebarVisible = false"
+            >
+                <i class="fa fa-fw fa-bars"></i>
+            </a>
 
-<router-outlet></router-outlet>
+            <a 
+                class="sidebar-header__logo"
+                [routerLink]="['./']"
+            >
+                <img src="./../assets/img/bitcoin-logo.svg" alt="Back to Home">
+            </a>
+        </div>
+        <nav class="sidebar__section sidebar__section--flexible sidebar-nav" customScrollbar>
+            <h6>Menu</h6>
+            <div class="sidebar-nav__item" sidebarNested>
+                <a [routerLink]="['./']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <i class="fa fa-calendar-o fa-fw mr-2"></i>
+                    BTC Futures
+                </a>
+            </div>
+            <div class="sidebar-nav__item" sidebarNested>
+                <a [routerLink]="['./btc-options']" routerLinkActive="active">
+                    <i class="fa fa-calendar-o fa-fw mr-2"></i>
+                    BTC Options
+                </a>
+            </div>
+
+            <div class="sidebar-nav__separator"></div>
+
+            <div class="sidebar-nav__item" sidebarNested>
+                <a [routerLink]="['./insurance']" routerLinkActive="active">
+                    <i class="fa fa-umbrella fa-fw mr-2"></i>
+                    Insurance
+                </a>
+            </div>
+            <div class="sidebar-nav__item" sidebarNested>
+                <a [routerLink]="['./docs']" routerLinkActive="active">
+                    <i class="fa fa-book fa-fw mr-2"></i>
+                    Documentation
+                </a>
+            </div>
+
+            <div class="sidebar-nav__separator"></div>
+
+            <h6>Account</h6>
+            <div class="sidebar-user">
+                <div class="sidebar-user__details">
+                    <i class="fa fa-user-circle-o fa-fw mr-2"></i>
+                    maciej.kurbanski@outlook.com
+                </div>
+            </div>
+
+            <app-side-menu>
+                <ng-template sideMenuTitle>
+                    <div class="sidebar-nav__item">
+                        <a href="javascript:;">
+                            <i class="fa fa-sliders fa-fw mr-2"></i>
+                            Account
+                        </a>
+                    </div>
+                </ng-template>
+
+                <sideMenuRoute url="/settings/my-account" title="My Account" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings" title="Settings" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings/security" title="Security" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings/withdraw" title="Withdraw" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings/deposit" title="Deposit" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings/api" title="API" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings/transaction-log" title="Transaction Log" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings/statistics" title="Statistics" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/settings/affilate" title="Affilate" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+            </app-side-menu>
+
+            <app-side-menu>
+                <ng-template sideMenuTitle>
+                    <div class="sidebar-nav__item">
+                        <a href="javascript:;">
+                            <i class="fa fa-life-ring fa-fw mr-2"></i>
+                            Help
+                        </a>
+                    </div>
+                </ng-template>
+
+                <sideMenuRoute url="/help/documentation" title="Documentation" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/help/videos" title="Videos" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/help/about" title="About" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/help/contacts" title="Contacts" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/help/fees" title="Fees" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/help/terms" title="Terms" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/help/api" title="API" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+                <sideMenuRoute url="/help/faq" title="FAQ" class="sidebar-nav__item sidebar-nav__item--sub"></sideMenuRoute>
+            </app-side-menu>
+
+            <div class="sidebar-nav__item" sidebarNested>
+                <a [routerLink]="['./chat']" routerLinkActive="active">
+                    <i class="fa fa-comment-o fa-fw mr-2"></i>
+                    Chat
+                </a>
+            </div>
+
+            <div class="sidebar-nav__separator"></div>
+
+            <div class="sidebar-nav__item" sidebarNested>
+                <a [routerLink]="['./sign-out']" routerLinkActive="active">
+                    <i class="fa fa-power-off fa-fw mr-2"></i>
+                    Sign Out
+                </a>
+            </div>
+        </nav>
+        <footer class="sidebar__section sidebar-footer">
+            <a
+                class="sidebar-footer__link text-muted"
+                [routerLink]="['./home']"
+            >
+                Terms of Service
+            </a>
+            <a
+                class="sidebar-footer__link text-muted"
+                [routerLink]="['./home']"
+            >
+                Fees
+            </a>
+            <a
+                class="sidebar-footer__link text-muted"
+                [routerLink]="['./home']"
+            >
+                About Us
+            </a>
+            <a
+                class="sidebar-footer__link text-muted"
+                [routerLink]="['./home']"
+            >
+                Contact Us
+            </a>
+            <a
+                class="sidebar-footer__link text-muted"
+                [routerLink]="['./home']"
+            >
+                Bug Bounty
+            </a>
+
+            <span class="sidebar-footer__trademark">
+                {{year}} &copy; BitcoinDashboard
+            </span>
+        </footer>
+    </aside>
+
+    <div class="layout__wrap">
+        <app-navbar
+            [(menuEnabled)]="sidebarVisible"
+            [(isCollapsed)]="isNavbarCollapsed"
+        ></app-navbar>
+
+        <main
+            class="app-layout__content"
+            [ngClass]="{
+                'app-layout__content--navbar-expanded': !isNavbarCollapsed 
+            }"
+        >
+            <router-outlet></router-outlet>
+        </main>
+
+        <div 
+            class="app-layout__footer"
+            [ngClass]="{
+                'app-layout__footer--sidebar': sidebarVisible
+            }"
+        >
+            <appFooter></appFooter>
+        </div>
+    </div>
+</div>

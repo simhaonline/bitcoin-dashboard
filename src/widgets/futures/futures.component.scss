@@ -1,0 +1,188 @@
+@import '~assets/scss/variables-dark';
+
+/**
+    Options
+*/
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__label {
+        margin-right: 0.5rem;
+        flex: 0 0 auto;
+    }
+
+    &__opt-wrap {
+        flex: 0 0 auto;
+    }
+}
+
+:host-context(.wd-size--sm),
+:host-context(.wd-size--xs) {
+    .options {
+        flex-wrap: wrap;
+
+        &__opt-wrap {
+            margin-top: 0.5rem;
+            flex: 1 1 100%;
+
+            > .btn-group {
+                width: 100%;
+                
+                > .btn {
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
+}
+
+/**
+    Input
+*/
+.input {
+    &__label {
+        margin-bottom: 0.5rem;
+
+        label {
+            margin: 0;
+        }
+    }
+}
+
+/**
+    Values (around the buttons)
+*/
+.values {
+    display: flex;
+    justify-content: space-between;
+
+    &__value {
+        flex: 0 0 auto;
+    }
+
+    .value {
+        &__label {
+            font-size: 0.68rem;
+            display: block;
+        }
+
+        &__value {
+            display: block;
+        }
+
+        &:last-child {
+            text-align: right;
+        }
+    }
+}
+
+/**
+    Actions
+*/
+.actions {
+    display: flex;
+    justify-content: center;
+
+    &__action {
+        flex: 1 1 50%;
+        padding: 1rem 0.5rem;
+
+        + .actions__action {
+            margin-left: 1rem;
+        }
+
+        &__title {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        &__muted {
+            opacity: 0.7;
+            display: block;
+        }
+    }
+}
+
+/**
+    Order Options
+*/
+.order-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__option {
+        + .order-options__option {
+            margin-left: 1rem;
+        }
+    }
+}
+
+:host-context(.wd-size--xs),
+:host-context(.wd-size--sm) {
+    .order-options {
+        justify-content: space-between;
+    }
+}
+
+/**
+    Helpers
+*/
+:host-context(.wd-size--xs) .xs-hidden {
+    display: none;
+}
+:host-context(.wd-size--sm) .sm-hidden {
+    display: none;
+}
+
+/**
+    Light / Dark
+*/
+/* #region Theme Dark */
+:host-context(.theme--dark) {
+    @import '~assets/scss/variables-dark';
+
+    .input__label {
+        color: $white;
+    }
+
+    .options {
+        &__label {
+            color: $text-main;
+        }
+    }
+
+    .values {
+        .value {
+            &__value {
+                color: $text-main;
+            }
+        }
+    }
+}
+/* #endregion */
+
+/* #region Theme Light */
+:host-context(.theme--light) {
+    @import '~assets/scss/variables-light';
+
+    .input__label {
+        color: $black;
+    }
+
+    .options {
+        &__label {
+            color: $text-main;
+        }
+    }
+
+    .values {
+        .value {
+            &__value {
+                color: $text-main;
+            }
+        }
+    }
+}
+/* #endregion */

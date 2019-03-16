@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/functions";
+@import "./../bootstrap/variables-dark";
+@import "~bootstrap/scss/mixins";
+@import "~ngx-toastr/toastr-bs4-alert";
+
+.toast-container {
+    .toast-success {
+    }
+    .toast-info {
+    }
+    .toast-warning {
+    }
+    .toast-error {
+    }
+}

@@ -1,0 +1,11 @@
+@import '~assets/scss/bootstrap/variables-dark';
+
+.form-group--auth {
+    .card-form__label {
+        padding: 0.44rem 0;
+
+        @media (max-width: map-get($grid-breakpoints, 'md') - 0.2px) {
+            padding: 0;
+        } 
+    }
+}

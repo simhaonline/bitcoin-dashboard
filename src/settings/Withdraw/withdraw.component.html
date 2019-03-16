@@ -1,0 +1,173 @@
+<!-- Withdraw Section -->
+<div class="card card--plain card--multiple">
+    <div class="card-header">
+        Withdraw
+    </div>
+    <div class="card-body">
+        <form class="card-form">
+            <div class="form-group">
+                <label class="card-form__label" for="withdraw__address">
+                    Address
+                </label>
+                <div class="card-form__input-wrap">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="withdraw__address"
+                            readonly
+                            placeholder="Click to Open Address Management..."
+                        />
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                btc.com
+                            </span>
+                        </div>
+                        <span class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                Edit
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="card-form__label" id="withdraw__available">
+                    Available
+                </label>
+                <div class="card-form__input-wrap">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="withdraw__available"
+                        value="0.0000000"
+                        readonly
+                    />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="card-form__label" id="withdraw__amount">
+                    Amount
+                </label>
+                <div class="card-form__input-wrap">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="withdraw__amount"
+                        placeholder="Provide an amount you want to withdraw"
+                    />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="card-form__label" id="withdraw__fee">
+                    Withdrawal Fee
+                </label>
+                <div class="card-form__input-wrap">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="withdraw__fee"
+                        value='0.0003'
+                    />
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="card-form__label" id="withdraw__priority">
+                    Priority
+                </span>
+                <div class="card-form__input-wrap">
+                    <div class="btn-group" role="group" aria-label="Withdraw Priority">
+                        <button type="button" class="btn btn-outline-secondary active">High</button>
+                        <button type="button" class="btn btn-outline-secondary">Medium</button>
+                        <button type="button" class="btn btn-outline-secondary">Low</button>
+                        <button type="button" class="btn btn-outline-secondary">Very Low</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="card-form__actions">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="withdraw()"
+                    >
+                        Withdraw
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Withdrawal History Section -->
+<div class="card card--plain card--multiple" *ngIf="withdrawalList.length > 0">
+    <div class="card-header">
+        Withdrawal History
+    </div>
+    <div class="wd-table table-responsive">
+        <table class=" table table-sm table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Withdrawal Fee</th>
+                    <th class="text-right">Address Name</th>
+                    <th class="text-right">Addres</th>
+                    <th class="text-right">Status</th>
+                    <th class="text-right">TX Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let withdraw of withdrawalListPage">
+                    <td>
+                        {{ withdraw.date | date:'dd-MM-yyyy HH:mm' }}
+                    </td>
+                    <td>
+                        {{ withdraw.amount | round:5 }}
+                    </td>
+                    <td>
+                        {{ withdraw.fee }}
+                    </td>
+
+                    <td class="text-right">
+                        {{ withdraw.addressName }}
+                    </td>
+                    <td class="text-right">
+                        {{ withdraw.address }}
+                    </td>
+                    <td class="text-right">
+                        <span class="badge badge-success" *ngIf="withdraw.status === 'success'">
+                            Success
+                        </span>
+                        <span class="badge badge-danger" *ngIf="withdraw.status === 'cancelled'">
+                            Cancelled
+                        </span>
+                        <span class="badge badge-warning" *ngIf="withdraw.status === 'unconfirmed'">
+                            Unconfirmed
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <a class="text-primary" *ngIf="withdraw.status === 'unconfirmed'" href="javascript:;">
+                            Cancel
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <span class="text-muted">
+            Showing {{ withdrawalListPageSize * (withdrawalListPageNo - 1) }} to {{ withdrawalListPageSize * (withdrawalListPageNo - 1) + withdrawalListPage.length }} of {{withdrawalList.length}} entries.
+        </span>
+        <nav aria-label="Withdrawal Log Paginator">
+            <ngb-pagination 
+                [collectionSize]="withdrawalList.length" 
+                [(page)]="withdrawalListPageNo"
+                [pageSize]="withdrawalListPageSize"
+                [maxSize]="3"
+                aria-label="Withdrawal Log Paginator"
+                size="sm"
+                class="pagination--no-margin"
+            ></ngb-pagination>
+        </nav>
+    </div>
+</div>

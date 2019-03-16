@@ -1,0 +1,59 @@
+@import "~assets/scss/variables-dark";
+
+.index-footer {
+    display: flex;
+    align-items: center;
+
+    &__item {
+        flex: 0 0 auto;
+
+        + .index-footer__item {
+            margin-left: 1.5rem;
+        }
+    }
+
+    padding: 1rem;
+    background-color: $gray-900;
+
+    @media (max-width: 991px) {
+        overflow-x: scroll;
+    }
+}
+
+.index {
+    > * + * {
+        margin-left: 0.2rem;
+    }
+}
+
+/* #region Theme Dark */
+:host-context(.theme--dark) {
+    @import '~assets/scss/variables-dark';
+
+    .index-footer {
+        background-color: $gray-900;
+    }
+
+    .index {
+        &__value {
+            color: $text-muted;
+        }
+    }
+}
+/* #endregion */
+
+/* #region Theme Light */
+:host-context(.theme--light) {
+    @import '~assets/scss/variables-light';
+
+    .index-footer {
+        background-color: $gray-900;
+    }
+
+    .index {
+        &__value {
+            color: $text-muted;
+        }
+    }
+}
+/* #endregion */

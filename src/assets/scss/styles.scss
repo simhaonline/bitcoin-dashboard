@@ -1,0 +1,130 @@
+// Position Variables Only
+@import 'variables';
+@import 'bootstrap/variables-dark';
+
+@import 'helpers';
+
+@import 'widgets-common';
+@import 'widget-headers';
+@import 'layout';
+@import 'sidebar';
+@import 'sidebar-nav';
+@import 'custom-scrollbars';
+@import 'data-table-wrap';
+
+@import './flag-icon-css/flag-icon-css';
+@import './ngx-datatable/ngx-datatable';
+@import './ngx-toastr/ngx-toastr';
+
+.card {
+    &.card--plain {
+        border: none;
+
+        .card-header {
+            background: none;
+        }
+    }
+
+    &.card--multiple + .card--multiple {
+        margin-top: 1.5rem;
+    }
+}
+
+.card-form {
+    .form-group {
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__label {
+        flex: 0 1 calc(3 / 12 * 100%);
+        font-weight: 500;
+        margin-right: 1.5rem;
+        margin-bottom: 0;
+        text-align: right;
+
+        &--top {
+            align-self: flex-start;
+        }
+    }
+
+    &__input-wrap {
+        flex: 0 1 calc(7 / 12 * 100%);
+    }
+
+    &__actions {
+        margin-left: calc(3 / 12 * 100% + 1.5rem);
+        flex: 0 1 calc(7 / 12 * 100%);
+    }
+
+    @media (max-width: map-get($grid-breakpoints, 'md') - 0.2px) {
+        .form-group {
+            flex-wrap: wrap;
+        }
+
+        &__label {
+            flex: 1 1 100%;
+            text-align: left;
+            margin-right: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        &__input-wrap {
+            flex: 1 1 100%;
+        }
+
+        &__actions {
+            flex: 1 1 100%;
+            margin-left: 0;
+        }
+    }
+}
+
+.badge.badge--alt {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+/* #region Dark */
+    .theme--dark {
+        @import 'bootstrap/variables-dark';
+        @import 'variables-dark';
+
+        html body {
+            background: $gray-900;
+        }
+        
+        .card.card--plain .card-header {
+            color: #fff;
+        }
+
+        .card-form__label {
+            color: $text-muted;
+        }
+    }
+/* #endregion */
+
+/* #region Light */
+    .theme--light {
+        @import 'bootstrap/variables-light';
+        @import 'variables-light';
+        
+        html body {
+            background: $gray-900;
+        }
+        
+        .card.card--plain .card-header {
+            color: #000;
+        }
+
+        .card-form__label {
+            color: $text-muted;
+        }
+    }
+/* #endregion */

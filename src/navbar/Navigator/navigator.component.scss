@@ -1,0 +1,14 @@
+.navigator {
+    .dropdown-toggle::after {
+        content: none;
+    }
+
+    .dropdown-menu {
+        top: 100% !important;
+    }
+}
+
+.navigator-dropdown-link {
+    color: inherit !important;
+    text-decoration: inherit !important;
+}

@@ -1,0 +1,8 @@
+@import "~assets/scss/bootstrap/variables-dark";
+
+.chart-zoom {
+    &__label {
+        margin-right: 0.5rem;
+        color: $text-muted;
+    }
+}

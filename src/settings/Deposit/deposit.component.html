@@ -1,0 +1,119 @@
+<!-- Deposit Section -->
+<div class="card card--plain card--multiple">
+    <div class="card-header">
+        Deposit
+    </div>
+    <div class="card-body">
+        <form class="card-form">
+            <div class="form-group">
+                <label class="card-form__label" for="deposit__address">
+                    Your BTC Deposit Address is
+                </label>
+                <div class="card-form__input-wrap">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="deposit__address"
+                        [value]="depositAddress"
+                        readonly
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="card-form__actions">
+                    <button type="button" class="btn btn-primary">
+                        Get New Deposit Address
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="card-form__label card-form__label--top">
+                    Generated Code
+                </span>
+                <div class="card-form__input-wrap">
+                    <img src="assets/img/example-deposit-code.png" alt="Deposit Code" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <p class="form-text mt-2 text-muted">
+            <i class="fa fa-fw mr-2 fa-question-circle text-gray-200"></i>The address (as well as all the addresses generated previously) can be used for further deposits. We do not have fee on BTC deposits. Don’t send less than 0.001 BTC: the transaction may not be processed. Your deposit will be credited in few minutes after 1 confirmation(s) on the Bitcoin network. Transaction confirmation on the Bitcoin network can take from 1 hour and up to more if you send it with a low fee.
+        </p>
+    </div>
+</div>
+<!-- Deposit History Section -->
+<div class="card card--plain card--multiple" *ngIf="depositsList.length > 0">
+    <div class="card-header">
+        Deposit History
+    </div>
+    <div class="wd-table table-responsive">
+        <table class="table table-sm table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Deposit Fee</th>
+                    <th class="text-right">Address Name</th>
+                    <th class="text-right">Addres</th>
+                    <th class="text-right">Status</th>
+                    <th class="text-right">TX Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let deposit of depositsListPage">
+                    <td>
+                        {{ deposit.date | date:'dd-MM-yyyy HH:mm' }}
+                    </td>
+                    <td>
+                        {{ deposit.amount | round:5 }}
+                    </td>
+                    <td>
+                        {{ deposit.fee }}
+                    </td>
+
+                    <td class="text-right">
+                        {{ deposit.addressName }}
+                    </td>
+                    <td class="text-right">
+                        {{ deposit.address }}
+                    </td>
+                    <td class="text-right">
+                        <span class="badge badge-success" *ngIf="deposit.status === 'success'">
+                            Success
+                        </span>
+                        <span class="badge badge-danger" *ngIf="deposit.status === 'cancelled'">
+                            Cancelled
+                        </span>
+                        <span class="badge badge-warning" *ngIf="deposit.status === 'unconfirmed'">
+                            Unconfirmed
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <a class="text-primary" *ngIf="deposit.status === 'unconfirmed'" href="javascript:;">
+                            Cancel
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <span class="text-muted">
+            Showing {{ depositsListPageSize * (depositsListPageNo - 1) }} to {{ depositsListPageSize * (depositsListPageNo - 1) + depositsListPage.length }} of {{depositsList.length}} entries.
+        </span>
+        <nav aria-label="Deposits Log Paginator">
+            <ngb-pagination 
+                [collectionSize]="depositsList.length" 
+                [(page)]="depositsListPageNo"
+                [pageSize]="depositsListPageSize"
+                [maxSize]="3"
+                aria-label="Deposits Log Paginator"
+                size="sm"
+                class="pagination--no-margin"
+            ></ngb-pagination>
+        </nav>
+    </div>
+</div>

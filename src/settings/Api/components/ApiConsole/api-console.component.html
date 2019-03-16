@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-5">
+        <form class="">
+            <div class="form-group">
+                <label for="api-console__access-key">Access Key</label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    id="api-console__access-key"
+                    [value]="accessKey"
+                    readonly
+                />
+            </div>
+            <div class="form-group">
+                <label for="api-console__access-secret">Access Secret</label>
+                <input 
+                    type="text"
+                    class="form-control"
+                    id="api-console__access-secret"
+                    [value]="accessSecret"
+                    readonly
+                />
+            </div>
+            <div class="form-group">
+                <label for="api-console__action">Action</label>
+                <select 
+                    type="text"
+                    class="form-control"
+                    id="api-console__action"
+                    [(value)]="action"
+                >
+                    <option *ngFor="let action of actions" [value]="action">
+                        {{ action }}
+                    </option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-block btn-primary">
+                Send Rest Request
+            </button>
+            <button type="button" class="btn btn-block btn-outline-primary">
+                Send Websocket Request
+            </button>
+        </form>
+        <div class="form-group mt-3 mb-0">
+            <label for="api-console__time-log">Time Log</label>
+            <textarea class="form-control" id="api-console__time-log" rows="3" readonly></textarea>
+            <span class="form-text text-muted">
+                For the FIX protocol, see <a href="#">FIX API Documentation</a>. Our Github API wrappers and samples, see <a href="#">https://github.com/unski11ed/bitcoin</a>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="form-group">
+            <label for="api-console__rest-request-log">REST API Request</label>
+            <textarea class="form-control" id="api-console__rest-request-log" rows="3" readonly></textarea>
+        </div>
+        <div class="form-group">
+            <label for="api-console__rest-result-log">REST API Result</label>
+            <textarea class="form-control" id="api-console__rest-result-log" rows="3" readonly></textarea>
+        </div>
+        <div class="form-group">
+            <label for="api-console__ws-request-log">WebSocket API Request</label>
+            <textarea class="form-control" id="api-console__ws-request-log" rows="3" readonly></textarea>
+        </div>
+        <div class="form-group">
+            <label for="api-console__ws-response-log">WebSocket API Result and Notifications</label>
+            <textarea class="form-control" id="api-console__ws-response-log" rows="3" readonly></textarea>
+        </div>
+    </div>
+</div>

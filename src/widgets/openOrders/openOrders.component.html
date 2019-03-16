@@ -1,0 +1,103 @@
+<div class="options">
+    <div class="options__option">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-secondary" id="open-orders-length-dd" ngbDropdownToggle>{{ itemsPerPage }}</button>
+            <div ngbDropdownMenu aria-labelledby="open-orders-length-dd">
+                <button class="dropdown-item" (click)="itemsPerPage = 10">10</button>
+                <button class="dropdown-item" (click)="itemsPerPage = 25">25</button>
+                <button class="dropdown-item" (click)="itemsPerPage = 50">50</button>
+                <button class="dropdown-item" (click)="itemsPerPage = 75">75</button>
+            </div>
+        </div>
+    </div>
+    <div class="options__option options__option--right">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="open-orders-show-all">
+            <label class="custom-control-label" for="open-orders-show-all">Show Cancelled and Fullfilled Orders</label>
+        </div>
+    </div>
+    <div class="options__option widget__options">
+        <ng-template appWidgetOptionsHost></ng-template>
+    </div>
+</div>
+<div class="wd-table">
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th class="text-muted">Side</th>
+                    <th class="text-muted">Instrument</th>
+                    <th class="text-muted">Size</th>
+                    <th class="text-muted">Price</th>
+                    <th class="text-muted">Completed</th>
+                    <th class="text-muted">Status</th>
+                    <th class="text-muted">Avg. Price</th>
+                    <th class="text-muted">Date Time</th>
+                    <th class="text-muted">Fees</th>
+                    <th class="text-muted">PNL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of page">
+                    <td 
+                        [class.text-success]="row.side === 'buy'"
+                        [class.text-danger]="row.side === 'sell'"
+                    >
+                        <i
+                            class="fa fa-fw"
+                            [class.fa-arrow-up]="row.side === 'buy'"
+                            [class.fa-arrow-down]="row.side === 'sell'"
+                        ></i>
+                        {{row.side === 'buy' ? 'Buy' : 'Sell'}}
+                    </td>
+                    <td class="text-center text-inverse">
+                        {{row.instrument}}
+                    </td>
+                    <td class="text-muted">
+                        {{row.size}}
+                    </td>
+                    <td class="text-muted">
+                        <i class="fa fa-dollar"></i> {{row.price | round : 2}}
+                    </td>
+                    <td class="text-muted">
+                        {{row.completed}}
+                    </td>
+                    <td>
+                        <span class="badge badge-danger" *ngIf="row.status === 'cancel'">
+                            Cancelled
+                        </span>
+                        <span class="badge badge-info" *ngIf="row.status === 'fill'">
+                            Filled
+                        </span>
+                    </td>
+                    <td class="text-muted">
+                        <i class="fa fa-dollar"></i> {{row.avgPrice | round : 2}}
+                    </td>
+                    <td class="text-muted">
+                        {{row.dateTime | date : 'MM-yy HH:mm'}}
+                    </td>
+                    <td class="text-muted">
+                        <i class="fa fa-btc"></i> {{row.fees | round : 8}}
+                    </td>
+                    <td class="text-muted">
+                        {{row.pnl | round : 4}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer d-flex align-items-center justify-content-between">
+        <span class="text-muted">
+            Showing {{ itemsPerPage * (currentPage - 1) }} to {{ itemsPerPage * (currentPage - 1) + page.length }} of {{data.length}} entries.
+        </span>
+        <nav aria-label="Open Orders Navigation">
+            <ngb-pagination 
+                [collectionSize]="page.length" 
+                [(page)]="currentPage" 
+                aria-label="Open Orders Pagination"
+                size="sm"
+                class="pagination--no-margin"
+            ></ngb-pagination>
+        </nav>
+    </div>
+</div>

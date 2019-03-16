@@ -1,0 +1,121 @@
+@import "~assets/scss/bootstrap/variables";
+@import "~assets/scss/variables";
+
+$footer-height: 51px;
+
+html, body{
+    height: 100%;
+}
+
+.app-layout {
+    &__content {
+        padding: (60px + $small-gutter-width) 0 ($small-gutter-width + $footer-height) 0;
+        //grid-column: 2/3;
+        overflow: auto;
+
+        > * {
+            height: 100%;
+        }
+
+        @media (max-width: 991px) {
+            transition: transform 0.3s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+    }
+
+    &__footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 100;
+        &--sidebar {
+            @media (min-width: 1200px) {
+                left: $sidebar-width;
+            }
+        }
+    }
+}
+.app-layout__content--navbar-expanded {
+    @media (min-width: 640px) and (max-width: 991px) {
+        transform: translateY(68px);
+    }
+    @media (max-width: 639px) {
+        transform: translateY(117px);
+    }
+}
+
+.sidebar-header {
+    padding: 1.05rem 1rem 1.05rem 0.5rem;
+    border-bottom: 1px solid;
+    display: flex;
+    
+    &__trigger {
+        padding: 0.5rem;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.sidebar-user {
+    padding: 0.5rem 1.1rem 2rem 1.1rem;
+
+    &__details {
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.sidebar-footer {
+    padding: 1.05rem 1rem 1.05rem 0.5rem;
+    border-top: 1px solid;
+
+    &__link {
+        margin-left: 0.5rem;
+    }
+
+    &__trademark {
+        display: block;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        margin-top: 1rem;
+    }
+}
+
+/* #region Dark Theme */
+.theme--dark {
+    @import '~assets/scss/variables-dark';
+
+    .sidebar-header {
+        border-color: $gray-600;
+    }
+
+    .sidebar-footer {
+        border-color: $gray-600;
+    
+        &__link {
+            color: $text-muted !important;
+        }
+    }
+}
+/* #endregion */
+
+/* #region Light Theme */
+.theme--light {
+    @import '~assets/scss/variables-light';
+
+    .sidebar-header {
+        border-color: $gray-800;
+    }
+
+    .sidebar-footer {
+        border-color: $gray-800;
+    
+        &__link {
+            color: $body-color !important;
+        }
+    }
+}
+/* #endregion */

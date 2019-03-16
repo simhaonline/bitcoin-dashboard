@@ -1,0 +1,18 @@
+.theme--dark {
+    @import './variables-dark';
+
+    @import '~bootstrap/scss/bootstrap.scss';
+    @import 'custom-dark';
+}
+
+.theme--light {
+    @import './variables-light';
+
+    @import '~bootstrap/scss/bootstrap.scss';
+    @import 'custom-light';
+}
+
+.theme--dark,
+.theme--light {
+    @import 'custom-common';
+}

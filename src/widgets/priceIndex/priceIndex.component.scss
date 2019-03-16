@@ -1,0 +1,118 @@
+.chart {
+    padding: 5rem 5rem;
+}
+
+.box {
+    padding: 1rem 1.5rem;
+}
+
+* + .box {
+    border-top: 1px solid;
+}
+
+.header {
+    font-size: 0.8rem;
+}
+
+.tables {
+    display: flex;
+    align-items: stretch;
+    border-top: 1px solid;
+
+    &__exchange {
+        flex: 1 1 50%;
+    }
+
+    &__delivery-price {
+        flex: 1 1 50%;
+    }
+
+    > * + * {
+        border-left: 1px solid;
+    }
+
+    .table {
+        margin-bottom: 0;
+
+        .featured-field {
+            font-weight: 500;
+        }
+    }
+}
+
+.paginator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+:host-context(.wd-size--xs),
+:host-context(.wd-size--sm),
+:host-context(.wd-size--md),
+:host-context(.wd-size--lg) {
+    .tables {
+        flex-wrap: wrap;
+
+        &__exchange {
+            flex: 1 1 100%;
+        }
+
+        &__delivery-price {
+            flex: 1 1 100%;
+        }
+
+        > * + * {
+            border-left: none;
+            border-top: 1px solid;
+        }
+    }
+}
+
+/**
+    Light / Dark
+*/
+/* #region Theme Dark */
+:host-context(.theme--dark) {
+    @import '~assets/scss/variables-dark';
+
+    * + .box {
+        border-color: $gray-600;
+    }
+    
+    .tables {
+        border-color: $gray-600;
+        > * + * {
+            border-color: $gray-600;
+        }
+    
+        .table {
+            .featured-field {
+                color: $text-main;
+            }
+        }
+    }
+}
+/* #endregion */
+
+/* #region Theme Light */
+:host-context(.theme--light) {
+    @import '~assets/scss/variables-light';
+
+    * + .box {
+        border-color: $gray-200;
+    }
+    
+    .tables {
+        border-color: $gray-200;
+        > * + * {
+            border-color: $gray-200;
+        }
+    
+        .table {
+            .featured-field {
+                color: $text-main;
+            }
+        }
+    }
+}
+/* #endregion */

@@ -1,0 +1,29 @@
+$blink-animation: 200ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s 1 normal;
+
+@keyframes blink-success {
+    0% { background-color: transparent }
+    20% { background-color: tomato }
+    100% { background-color: transparent }
+}
+
+@keyframes blink-danger {
+    0% { background-color: transparent }
+    20% { background-color: green }
+    100% { background-color: transparent }
+}
+
+.rt__table {
+    tbody {
+        display: block;
+        max-height: 37rem;
+        overflow-y: auto;
+    }
+
+    thead, tbody {
+        tr {
+            display:table;
+            width:100%;
+            table-layout:fixed;
+        }
+    }
+}

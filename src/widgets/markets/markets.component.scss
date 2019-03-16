@@ -1,0 +1,52 @@
+@import '~assets/scss/bootstrap/variables-dark';
+
+.markets {
+    display: flex;
+    flex-direction: column;
+}
+  
+.markets-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    flex: 0 0 auto;
+    border-bottom: 1px solid;
+
+    &__filter {
+        flex: 0 0 50%;
+    }
+
+    &__options {
+        flex: 0 0 auto;
+        margin-left: 10px;
+
+        .custom-control {
+            margin: 0;
+        }
+    }
+}
+
+.markets-table {
+    flex: 1 1 auto;
+}
+
+/* #region Dark Theme */
+:host-context(.theme--dark) {
+    @import '~assets/scss/variables-dark';
+
+    .markets-header {
+        border-color: $gray-600;
+    }
+}
+/* #endregion */
+
+/* #region Light Theme */
+:host-context(.theme--light) {
+    @import '~assets/scss/variables-light';
+
+    .markets-header {
+        border-color: $gray-200;
+    }
+}
+/* #endregion */

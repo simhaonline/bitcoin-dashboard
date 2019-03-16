@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg fixed-top main-navbar">
+    <a
+        class="sidebar-trigger"
+        href="javascript:;"
+        (click)="toggleMenu($event)"
+    >
+        <i class="fa fa-fw fa-bars"></i>
+    </a>
+    
+    <a 
+        class="navbar-brand"
+        [routerLink]="['./']"
+    >
+        <img src="./../assets/img/bitcoin-logo.svg" alt="CoinDash Logo">
+    </a>
+
+    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarNavDropdown">
+        <div class="page-title">
+            <h1>
+                {{ pageTitle }}
+            </h1>
+        </div>
+        
+        <div class="summary">
+            <app-summary></app-summary>
+        </div>
+
+        <div class="margins">
+            <app-margin></app-margin>
+        </div>
+    </div>
+
+    <div class="options navbar-nav">
+        <div class="options__item option-theme-selector uncollapsed-only">
+            <app-theme-selector></app-theme-selector>
+        </div>
+        <div class="options__item">
+            <app-announcements></app-announcements>
+        </div>
+        <div class="options__item">
+            <app-language-selector></app-language-selector>
+        </div>
+        <div class="options__item uncollapsed-only">
+            <app-user-menu></app-user-menu>
+        </div>
+        <div 
+            class="options__item collapsed-only nav-item"
+            [class.active]="!isCollapsed"
+        >
+            <a class="nav-link" href="javascript:;" (click)="toggleCollapse()">
+                <i class="fa fa-fw fa-th"></i>
+                <i class="fa ml-1 fa-angle-down"></i>
+            </a>
+        </div>
+    </div>
+</nav>

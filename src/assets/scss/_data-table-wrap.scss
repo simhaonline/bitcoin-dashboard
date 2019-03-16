@@ -1,0 +1,56 @@
+.theme {
+    .dt-wrap {
+        position: relative;
+        overflow: auto;
+
+        .dt-wrap__table {
+            position: relative;
+            width: 1600px;
+
+            .table {
+                margin-bottom: 0;
+            }
+
+            @media (min-width: 1600px) {
+                width: auto;
+            }
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+    }
+}
+
+/* #region Dark */
+.theme--dark {
+    @import './bootstrap/variables-dark';
+
+    .dt-wrap {
+        &::-webkit-scrollbar-track {
+            background-color: map-get($grays, 800);
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background-color: map-get($grays, 400);
+        }
+    }
+}
+/* #endregion */
+
+/* #region Light */    
+.theme--light {
+    @import './bootstrap/variables-light';
+
+    .dt-wrap {
+        &::-webkit-scrollbar-track {
+            background-color: map-get($grays, 800);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: map-get($grays, 400);
+        }
+    }
+}
+/* #endregion */

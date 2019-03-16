@@ -1,0 +1,7 @@
+@import '~bootstrap/scss/functions';
+@import 'variables-dark';
+
+// Variables Overrides
+$bg-color: theme-color('light');
+
+$small-gutter-width: 4px;

@@ -1,0 +1,8 @@
+{
+    "apiWsUrl": "ws://mkurban.me/bitcoin-api/test",
+    "apiKey": "LxxG41nnnBTi",
+    "apiSecret": "FHSLNNTKYHEWRKGHVT4Q3L5I3223FMY4",
+
+    "statusUpdateInterval": 10000,
+    "currencyUpdateInterval": 5000
+}

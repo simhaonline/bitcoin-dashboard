@@ -1,0 +1,21 @@
+@import "~assets/scss/bootstrap/variables-dark";
+
+.ts {
+    display: flex;
+    align-items: center;
+
+    &__label {
+        flex: 0 0 auto;
+        margin-right: 1rem;
+        color: $text-muted;
+    }
+
+    &__action {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+
+        &:not(.active) {
+            color: $text-muted;
+        }
+    }
+}

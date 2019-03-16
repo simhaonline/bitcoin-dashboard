@@ -1,0 +1,65 @@
+<div 
+    class="wd-single custom-scrollbars widget card widget--{{component.widget}}"
+    widget-size
+    [ngClass]="{ 
+        'widget--collapsed': isCollapsed, 
+        'widget--highlighted': !!highlightStatus,
+        'widget--highlighted--blink': highlightStatus === 'scroll-blink',
+        'widget--fullscreen': isFullscreen
+    }"
+>
+    <!-- Header of a orphan -->
+    <div class="card-header widget__header widget__header--single" *ngIf="!component.parentId">
+        <div class="widget__title-wrap">
+            <a class="widget__title" href="javascript:;" (click)="toggleCollapse()">
+                <span class="widget__header__collapse">
+                    <i class="fa fa-angle-down fa-fw" *ngIf="!isCollapsed"></i>
+                    <i class="fa fa-angle-right fa-fw" *ngIf="isCollapsed"></i>
+                </span>
+                {{ component.title }}
+            </a>
+        </div>
+        <div class="widget__options">
+            <ng-template widget-options-host></ng-template>
+        </div>
+    </div>
+    <!-- Header of a child -->
+    <div class="card-header widget__header widget__header--single" *ngIf="component.parentId">
+        <div class="widget__title-wrap">
+            <a class="widget__title" href="javascript:;" (click)="toggleCollapse()">
+                <span class="widget__header__collapse">
+                    <i class="fa fa-angle-down fa-fw" *ngIf="!isCollapsed"></i>
+                    <i class="fa fa-angle-right fa-fw" *ngIf="isCollapsed"></i>
+                </span>
+            </a>
+            <a
+                href="javascript:;"
+                class="widget__header__action mr-1"
+                ngbTooltip="Reattach to Parent"
+                placement="top"
+                (click)="onReattachClick($event)"
+                (mouseenter)="highlightItem(component.parentId)"
+                (mouseleave)="highlightItem(null)"
+            >
+                <i class="fa fa-fw fa-window-restore"></i>
+            </a>
+            <a class="widget__title" href="javascript:;" (click)="toggleCollapse()" *ngIf="component.parentTitle">
+                {{ component.parentTitle }}:
+            </a>
+            <span class="widget__title">
+                <span>{{ component.title }}</span>
+                <span class="text-muted ml-1" *ngIf="component.subtitle">
+                    {{ component.subtitle }}
+                </span>
+            </span>
+        </div>
+
+        <div class="widget__options">
+            <ng-template appWidgetOptionsHost></ng-template>
+        </div>
+    </div>
+    <!-- Content -->
+    <div class="widget__content" [@collapse]="collapseState">
+        <bl-render [component]="component" (componentInstance)="onComponentInstance($event)"></bl-render>
+    </div>
+</div>

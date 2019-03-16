@@ -1,0 +1,66 @@
+@import './../variables-dark';
+
+// Button Group Overrides
+.btn.btn-outline-secondary {
+    color: $gray-100;
+    border-color: $gray-300;
+}
+
+.btn-group {
+    .btn.btn-outline-secondary {
+        color: $white;
+        border-color: $gray-300;
+    }
+}
+
+// Card Overrrides
+.card {
+    border-color: $gray-900;
+}
+
+.btn-link.text-muted.active {
+    color: #fff !important;
+}
+
+.nav-tabs-scroll {
+    &::-webkit-scrollbar-thumb {
+        background-color: $gray-400;
+    }
+}
+
+.nav-tabs.nav-tabs--underline {
+    .nav-link {
+        color: $text-muted;
+
+        &.active {
+            border-color: $gray-700;
+            border-bottom-color: $underlineTabAccent;
+            box-shadow: inset 2px -6px 0px -3px $underlineTabAccent;
+            color: #fff;
+        }
+    }
+}
+
+.table-bordered {
+    th, td {
+        border-color: $gray-600 !important;
+    }
+}
+
+.navbar-nav .nav-link {
+    color: $text-muted;
+
+    &:focus,
+    &:hover {
+        color: $navbar-dark-hover-color;
+    }
+
+    &:active,
+    &.active {
+        color: $navbar-dark-active-color;
+    }
+
+    &.disabled {
+        color: $navbar-dark-disabled-color !important;
+    }
+}
