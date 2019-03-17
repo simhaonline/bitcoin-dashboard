@@ -77,35 +77,7 @@ export class BootstrapLayoutItem {
 
     // tslint:disable-next-line:no-forward-ref
     @ViewChild(forwardRef(() => WidgetOptionsHostDirective))
-    public set widgetOptionsHost(host: WidgetOptionsHostDirective) {
-        if (
-            this.renderedComponentInstance &&
-            this.renderedComponentInstance.controlComponents &&
-            (host || this.renderedComponentInstance.widgetOptionsHost)
-        ) {
-            const instancesMap = new WeakMap<any, any>();
-            const hostContainerRef = host ? host.viewContainerRef :
-                this.renderedComponentInstance.widgetOptionsHost.viewContainerRef;
-
-            hostContainerRef.clear();
-
-            for (const componentType of this.renderedComponentInstance.controlComponents) {
-                const componentFactory =
-                    this.componentFactoryResolver.resolveComponentFactory(componentType);
-
-                const componentRef = hostContainerRef.createComponent(componentFactory);
-                const componentInstance = componentRef.instance as WidgetHeader;
-                instancesMap.set(componentType, componentInstance);
-
-                // Populate WidgetHeader fields
-                componentInstance.ownerLayoutComponent = this;
-            }
-
-            if (this.renderedComponentInstance.controlComponentsInstances) {
-                this.renderedComponentInstance.controlComponentsInstances(instancesMap);
-            }
-        }
-    }
+    public widgetOptionsHost: WidgetOptionsHostDirective;
 
     @Output()
     public itemHighlight: EventEmitter<any> = new EventEmitter();
@@ -132,5 +104,32 @@ export class BootstrapLayoutItem {
 
     protected onComponentInstance(component: WidgetWithOptions) {
         this.renderedComponentInstance = component;
+
+        if (
+            this.renderedComponentInstance.controlComponents &&
+            (this.widgetOptionsHost || this.renderedComponentInstance.widgetOptionsHost)
+        ) {
+            const instancesMap = new WeakMap<any, any>();
+            const hostContainerRef = this.widgetOptionsHost ? this.widgetOptionsHost.viewContainerRef :
+                this.renderedComponentInstance.widgetOptionsHost.viewContainerRef;
+
+            hostContainerRef.clear();
+
+            for (const componentType of this.renderedComponentInstance.controlComponents) {
+                const componentFactory =
+                    this.componentFactoryResolver.resolveComponentFactory(componentType);
+
+                const componentRef = hostContainerRef.createComponent(componentFactory);
+                const componentInstance = componentRef.instance as WidgetHeader;
+                instancesMap.set(componentType, componentInstance);
+
+                // Populate WidgetHeader fields
+                componentInstance.ownerLayoutComponent = this;
+            }
+
+            if (this.renderedComponentInstance.controlComponentsInstances) {
+                this.renderedComponentInstance.controlComponentsInstances(instancesMap);
+            }
+        }
     }
 }
