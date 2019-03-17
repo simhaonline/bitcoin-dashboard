@@ -43,7 +43,6 @@ export class CurrencyIndexApiService {
     public observe(): Observable<CurrencyIndex> {
         // Observe service notification index and transform the
         // data to a CurrencyIndex
-        // (Currently service is not providing the notifications)
         const indexNotification$ = this.notifications
             .bind([ApiNotificationHooks.Index])
             .pipe(
@@ -61,23 +60,14 @@ export class CurrencyIndexApiService {
                         )
                 )
             );
-        // Fetch current index every CURRENCY_UPDATE_INTERVAL
-        // milliseconds
-        const index$ = interval(CURRENCY_UPDATE_INTERVAL)
-            .pipe(
-                startWith(0),
-                switchMap<number, any>(
-                    () => this.connection.call(ApiActions.Index)
-                )
-            )
 
         // Combine the above Observables and map them to CurrencyIndex
-        return combineLatest(index$, indexNotification$).pipe(
-            switchMap(([index, notification]) => of<CurrencyIndex>({
+        return indexNotification$.pipe(
+            switchMap((notification) => of<CurrencyIndex>({
                 btc: {
-                    value: notification.btc.value || index.btc,
-                    valueDiff: this.lastIndexVal ?
-                        (notification.btc.valueDiff || index.btc - this.lastIndexVal) :
+                    value: notification.btc.value,
+                    valueDiff: typeof this.lastIndexVal === 'number' ?
+                        notification.btc.value - this.lastIndexVal :
                         0,
                     edp: notification.btc.edp
                 }

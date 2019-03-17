@@ -42,6 +42,7 @@ export class SummaryComponent implements OnDestroy {
 
         // Merge store branches into one local data structure
         this.btcIndexSub = btcIndex.subscribe((currencyIndex) => {
+            console.log(currencyIndex.valueDiff);
             Object.assign(this.data, {
                 btcIndex: currencyIndex.value,
                 btcDelta: currencyIndex.valueDiff
