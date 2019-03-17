@@ -11,8 +11,10 @@ import {
 import _ from 'lodash';
 
 import { WidgetsService } from './../widgets.service';
-import { LayoutItem, Widget } from './..';
-import { BootstrapLayoutItemOptions, ComponentHostDirective } from '.';
+import { LayoutItem } from './../layout.interface';
+import { Widget } from './../widget.interface';
+import { BootstrapLayoutItemOptions } from './bootstrap-layout-item.options.interface';
+import { ComponentHostDirective } from './component-host.directive';
 
 @Component({
     selector: 'bl-render',

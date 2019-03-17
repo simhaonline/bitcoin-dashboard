@@ -8,7 +8,7 @@ import FtuDataPulseUpdater from './FtuDataPulseUpdater';
 import {
     ChartType,
     DataResult
-} from '.';
+} from './tradingView.types';
 
 export default class FtuDataFeed {
     public symbolSearch?: any = null;

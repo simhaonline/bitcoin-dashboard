@@ -17,24 +17,7 @@ import {
     ComponentHostDirective,
     WidgetOptionsHostDirective
 } from './bootstrapLayout';
-
-import { AccountSummaryWidgetComponent } from './accountSummary';
-import { FuturesWidgetComponent } from './futures';
-import { FuturesSummaryWidgetComponent } from './futuresSummary';
-import { MarketDepthWidgetComponent } from './marketDepth';
-import { MarketsWidgetComponent } from './markets';
-import { OpenOrdersWidgetComponent } from './openOrders';
-import { OptionsSummaryWidgetComponent } from './optionsSummary';
-import { OrderBookWidgetComponent } from './orderBook';
-import { OrderHistoryWidgetComponent } from './orderHistory';
-import { PositionsWidgetComponent } from './positions';
-import { RecentTradesWidgetComponent } from './recentTrades';
-import { TradeHistoryWidgetComponent } from './tradeHistory';
-import { TradingViewWidgetComponent } from './tradingView';
-import { PriceIndexWidgetComponent } from './priceIndex';
-import { HistoricalVolatilityWidgetComponent } from './historicalVolatility';
-import { BtcOptionsTableComponent } from './btc-options-table';
-import { RecentTradesOptionsComponent } from './recentTradesOptions';
+import { WidgetsList } from './widgets-list';
 
 import { WcFullscreenComponent } from './_widgetControls/fullscreen';
 import { WcTableStyleComponent } from './_widgetControls/tableStyle';
@@ -43,26 +26,6 @@ import { WcChartZoomComponent } from './_widgetControls/chartZoom';
 import { WcCalcTriggerComponent } from './_widgetControls/calcTrigger';
 import { WcRecentTradesVolumeComponent } from './_widgetControls/recentTradesVolume';
 import { WcOptionsFilterComponent } from './_widgetControls/optionsFilter';
-
-const Widgets = [
-    AccountSummaryWidgetComponent,
-    FuturesWidgetComponent,
-    FuturesSummaryWidgetComponent,
-    MarketDepthWidgetComponent,
-    MarketsWidgetComponent,
-    OpenOrdersWidgetComponent,
-    OptionsSummaryWidgetComponent,
-    OrderBookWidgetComponent,
-    OrderHistoryWidgetComponent,
-    PositionsWidgetComponent,
-    RecentTradesWidgetComponent,
-    TradeHistoryWidgetComponent,
-    TradingViewWidgetComponent,
-    PriceIndexWidgetComponent,
-    HistoricalVolatilityWidgetComponent,
-    BtcOptionsTableComponent,
-    RecentTradesOptionsComponent
-];
 
 @NgModule({
     imports: [
@@ -78,7 +41,7 @@ const Widgets = [
         NgxDatatableModule
     ],
     declarations: [
-        ...Widgets,
+        ...WidgetsList,
 
         BootstrapLayoutComponent,
         BlSingleComponent,
@@ -100,7 +63,7 @@ const Widgets = [
         BootstrapLayoutComponent
     ],
     entryComponents: [
-        ...Widgets,
+        ...WidgetsList,
 
         WcFullscreenComponent,
         WcTableStyleComponent,
@@ -112,11 +75,6 @@ const Widgets = [
     ]
 })
 export class WidgetsModule {}
-
-export {
-    Widgets,
-    WidgetOptionsHostDirective
-};
 
 export * from './widget.interface';
 export * from './layout.interface';

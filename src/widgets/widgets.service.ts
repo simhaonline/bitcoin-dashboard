@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import _ from 'lodash';
 
-import { Widgets } from './';
+import { WidgetsList } from './widgets-list';
 
 @Injectable()
 export class WidgetsService {
     public getWidgetType(widgetTypeId: string) {
-        return _.find(Widgets, (widget) => widget.definition.name === widgetTypeId);
+        return _.find(WidgetsList, (widget) => widget.definition.name === widgetTypeId);
     }
 }

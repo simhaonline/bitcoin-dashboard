@@ -1,7 +1,7 @@
 import {
-    LayoutItem,
     WidgetOptionsHostDirective
-} from '.';
+} from './bootstrapLayout/widget-options-host.directive';
+import { LayoutItem } from './layout.interface';
 
 export interface WidgetDefinition {
     name: string;

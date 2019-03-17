@@ -13,12 +13,8 @@ import { AppState } from 'store/app.state';
 import _ from 'lodash';
 import moment from 'moment';
 
-import {
-    Widget,
-    WidgetDefinition,
-    WidgetOptionsHostDirective
-} from './..';
-import { WidgetBase } from './../widget.base';
+import { WidgetBase } from 'widgets/widget.base';
+import { WidgetDefinition } from 'widgets/widget.interface';
 
 import {
     WcFullscreenComponent,

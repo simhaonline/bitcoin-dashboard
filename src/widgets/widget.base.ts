@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
     WidgetOptionsHostDirective
-} from './';
+} from './bootstrapLayout/widget-options-host.directive';
 
 export class WidgetBase {
     // tslint:disable-next-line:no-forward-ref

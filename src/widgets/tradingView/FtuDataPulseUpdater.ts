@@ -4,10 +4,8 @@ import _ from 'lodash';
 import resolutionToDuration from './resolutionToDuration';
 import FtuDataFeed from './FtuDataFeed';
 
-import {
-    Subscription,
-    DataResult
-} from './';
+import { Subscription, DataResult } from './tradingView.types';
+
 
 export default class FtuDataPulseUpdater {
     private requestPending = 0;

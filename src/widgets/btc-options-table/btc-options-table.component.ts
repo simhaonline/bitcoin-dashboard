@@ -9,7 +9,7 @@ import { DatatableComponent, TableColumn } from '@swimlane/ngx-datatable';
 import _ from 'lodash';
 import moment from 'moment';
 
-import { WidgetDefinition } from './..';
+import { WidgetDefinition } from './../widget.interface';
 import { WidgetBase } from './../widget.base';
 import {
     WcOptionsFilterComponent,

@@ -8,8 +8,10 @@ import { DOCUMENT } from '@angular/common';
 import uuid from 'uuid';
 import _ from 'lodash';
 
-import { LayoutItem, WidgetType } from './..';
-import { BootstrapLayoutItemOptions } from '.';
+import { LayoutItem } from 'widgets/layout.interface';
+import { BootstrapLayoutItemOptions } from './bootstrap-layout-item.options.interface';
+import { WidgetType } from 'widgets/widget.interface';
+
 
 @Component({
     selector: 'app-bootstrap-layout',
