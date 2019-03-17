@@ -1,9 +1,0 @@
-{
-    "apiWsUrl": "ws://mkurban.me/bitcoin-api/prod/ws",
-    "apiAjaxUrl": "http://mkurban.me/bitcoin-api/prod/ajax",
-    "apiKey": "sCM1xjsSuGm",
-    "apiSecret": "QPYATIMWVO3A7E6QSAHUESBVHWYEVAVR",
-
-    "statusUpdateInterval": 10000,
-    "currencyUpdateInterval": 5000
-}
