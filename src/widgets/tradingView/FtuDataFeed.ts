@@ -10,8 +10,6 @@ import {
     DataResult
 } from '.';
 
-const DATA_URL = 'http://mkurban.me/bitcoin-api/prod/ajax?';
-
 export default class FtuDataFeed {
     public symbolSearch?: any = null;
     public barsPulseUpdater?: FtuDataPulseUpdater = null;
@@ -22,7 +20,11 @@ export default class FtuDataFeed {
 
     constructor(
         private widgetInstance: any,
-        private getConfig: () => any
+        private getConfig: () => {
+            containerId: string,
+            symbol: string,
+        },
+        private dataUrl: string
     ) {
         this.barsPulseUpdater = new FtuDataPulseUpdater(this, 10000);
     }
@@ -38,7 +40,14 @@ export default class FtuDataFeed {
             }
         };
 
-        setTimeout(() => { callback(this.getConfig()); }, 0);
+        setTimeout(() => {
+            const { containerId, symbol } = this.getConfig();
+            const tvConfig = {
+                symbol,
+                container_id: containerId
+            }
+            callback(tvConfig);
+        }, 0);
         setCandles(this.widgetInstance);
     }
 
@@ -107,7 +116,7 @@ export default class FtuDataFeed {
             }
         }
 
-        this.send(DATA_URL, {
+        this.send(this.dataUrl, {
             q: 'ftu_twc',
             symbol: symbolInfo.name,
             resolution,
@@ -180,11 +189,7 @@ export default class FtuDataFeed {
 
     private send(url: string, params: any) {
         const query = queryString.stringify(params);
-        const settings: any = {
-            method: 'GET',
-            mode: 'no-cors'
-        };
 
-        return fetch(url + query).then((response: Response) => response.json());
+        return fetch(`${url}?${query}`).then((response: Response) => response.json());
     }
 }

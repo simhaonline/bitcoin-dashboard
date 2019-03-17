@@ -3,9 +3,11 @@ import {
     ElementRef,
     AfterContentInit
 } from '@angular/core';
-import * as _ from 'lodash';
-import * as uuid from 'uuid';
-import * as moment from 'moment';
+import _ from 'lodash';
+import uuid from 'uuid';
+import { from } from 'rxjs';
+import { mergeMap, filter, first } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 import * as getDataFeeds from 'assets/vendor/trading-view/datafeed.js';
 import * as getTradingView from 'assets/vendor/trading-view/trading-view.js';
@@ -13,6 +15,8 @@ import * as getTradingView from 'assets/vendor/trading-view/trading-view.js';
 import FtuDataFeed from './FtuDataFeed';
 
 import { WidgetDefinition } from './..';
+import { AppState } from 'store/app.state';
+import { Config } from 'core/config';
 
 const DEFAULT_CONFIG = {
     custom_css_url: 'css/dark.css',
@@ -102,10 +106,12 @@ export class TradingViewWidgetComponent implements AfterContentInit {
     private tvWidget: any = { };
 
     constructor(
-        private componentElement: ElementRef
+        private componentElement: ElementRef,
+        private store: Store<AppState>,
+        private config: Config,
     ) { }
 
-    public ngAfterContentInit(): void {
+    public async ngAfterContentInit(): Promise<void> {
         const containerId = `chart_${uuid.v1()}`;
         const targetElement =
             this.componentElement.nativeElement.querySelector('.trading-view-wrapper');
@@ -113,11 +119,12 @@ export class TradingViewWidgetComponent implements AfterContentInit {
         const TradingView = getTradingView(defaultDatafeed);
         const targetConfig = Object.assign({}, DEFAULT_CONFIG, this.settings, {
             container_id: containerId,
-            symbol: this.generateSymbol()
+            symbol: await this.generateSymbol()
         });
         const dataFeed = targetConfig.datafeed = new FtuDataFeed(
             this.tvWidget,
-            () => _.omit(targetConfig, 'datafeed')
+            () => _.omit(targetConfig, 'datafeed'),
+            this.config.apiAjaxUrl
         );
 
         targetElement.id = containerId;
@@ -127,11 +134,13 @@ export class TradingViewWidgetComponent implements AfterContentInit {
         dataFeed.WidgetInstance = this.tvWidget = new TradingView.widget(targetConfig);
     }
 
-    private generateSymbol() {
-        return 'BTC-29JUN18';
+    private async generateSymbol() {
+        const activeFuture = await this.store.select('instruments').pipe(
+            mergeMap((instrumentsModel) => from(instrumentsModel.currentInstruments)),
+            filter((instrument) => instrument.kind === 'future'),
+            first((instrument) => instrument.isActive)
+        ).toPromise();
 
-        // const futureDate = moment().add(15, 'days');
-
-        // return 'BTC-' + futureDate.format('DDMMMYY').toUpperCase();
+        return activeFuture.instrumentName;
     }
 }
