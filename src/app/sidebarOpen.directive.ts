@@ -36,7 +36,7 @@ export class SidebarOpenDirective implements AfterViewInit {
             .classList.contains(CLASS_SIDEBAR_VISIBLE);
     }
     @Output()
-    public sidebarOpenChange = new EventEmitter<boolean>();
+    public appSidebarOpenChange = new EventEmitter<boolean>();
 
     private lastStatic = false;
 
@@ -85,13 +85,13 @@ export class SidebarOpenDirective implements AfterViewInit {
 
             this.lastStatic = isStatic;
 
-            this.sidebarOpenChange.emit(this.appSidebarOpen);
+            this.appSidebarOpenChange.emit(this.appSidebarOpen);
         }
     }
 
     private closeSidebar() {
         this.appSidebarOpen = false;
-        this.sidebarOpenChange.emit(this.appSidebarOpen);
+        this.appSidebarOpenChange.emit(this.appSidebarOpen);
     }
 
     private isSidebarStatic() {
