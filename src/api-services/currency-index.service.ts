@@ -27,14 +27,14 @@ const CURRENCY_UPDATE_INTERVAL = 1000;
 
 @Injectable()
 export class CurrencyIndexApiService {
-    private _lastIndexVal?: number = null;
-    private _notifications: ServiceNotification;
+    private lastIndexVal?: number = null;
+    private notifications: ServiceNotification;
 
     constructor(
-        _notificationsFactory: ServiceNotificationFactory,
-        private _connection: ServiceConnection
+        notificationsFactory: ServiceNotificationFactory,
+        private connection: ServiceConnection
     ) {
-        this._notifications = _notificationsFactory.get();
+        this.notifications = notificationsFactory.get();
     }
 
     /**
@@ -44,7 +44,7 @@ export class CurrencyIndexApiService {
         // Observe service notification index and transform the
         // data to a CurrencyIndex
         // (Currently service is not providing the notifications)
-        const indexNotification$ = this._notifications
+        const indexNotification$ = this.notifications
             .bind([ApiNotificationHooks.Index])
             .pipe(
                 switchMap<NotificationMessage, CurrencyIndex>(
@@ -67,7 +67,7 @@ export class CurrencyIndexApiService {
             .pipe(
                 startWith(0),
                 switchMap<number, any>(
-                    () => this._connection.call(ApiActions.Index)
+                    () => this.connection.call(ApiActions.Index)
                 )
             )
 
@@ -75,16 +75,16 @@ export class CurrencyIndexApiService {
         return combineLatest(index$, indexNotification$).pipe(
             switchMap(([index, notification]) => of<CurrencyIndex>({
                 btc: {
-                    value: notification.btc.value || (<number> index.btc),
-                    valueDiff: this._lastIndexVal ?
-                        (notification.btc.valueDiff || (<number> index.btc) - this._lastIndexVal) :
+                    value: notification.btc.value || index.btc,
+                    valueDiff: this.lastIndexVal ?
+                        (notification.btc.valueDiff || index.btc - this.lastIndexVal) :
                         0,
                     edp: notification.btc.edp
                 }
             })),
             // Side effect: save value for future diff calculations
             tap((value) => {
-                this._lastIndexVal = value.btc.value;
+                this.lastIndexVal = value.btc.value;
             })
         );
     }

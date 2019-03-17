@@ -31,7 +31,7 @@ export class ServiceNotification {
 
     public bind(
         messagesToBind: string[],
-        instrument: Object = ['all']
+        instrument: object = ['all']
     ): Observable<NotificationMessage> {
         return this._connection.callRaw(
             ApiActions.Subscribe,
@@ -46,7 +46,8 @@ export class ServiceNotification {
                     if (msg.notifications) {
                         return of<NotificationMessage>({
                             ...msg,
-                            notifications: msg.notifications as NotificationEntry[],
+                            notifications: (_.isArray(msg.notifications) ?
+                                msg.notifications : [msg.notifications]) as NotificationEntry[],
                         });
                     } else {
                         return of<NotificationMessage>({
