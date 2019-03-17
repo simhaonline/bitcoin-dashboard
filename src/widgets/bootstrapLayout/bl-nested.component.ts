@@ -35,12 +35,11 @@ export class BlNestedComponent extends BootstrapLayoutItem implements DoCheck {
     get isCollapsed() {
         return this.collapseState === 'collapsed';
     }
-
+    public collapseState = 'visible';
     @Output()
     public dettach: EventEmitter<any> = new EventEmitter();
 
     private activeComponentId?: string;
-    private collapseState = 'visible';
     private iterableDiffer: IterableDiffer<any>;
 
     constructor(

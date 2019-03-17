@@ -14,7 +14,7 @@ import { ThemeService, ThemeStyle } from 'core/theme.service';
     templateUrl: './theme-selector.component.html',
 })
 export class ThemeSelectorComponent {
-    private themeStyle: ThemeStyle;
+    public themeStyle: ThemeStyle;
 
     constructor(
         private themeService: ThemeService

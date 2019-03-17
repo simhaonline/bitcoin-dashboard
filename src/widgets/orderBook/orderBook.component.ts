@@ -114,7 +114,7 @@ export class OrderBookWidgetComponent extends WidgetBase implements OnDestroy {
             this.renderedControlComponents.get(WcFullscreenComponent) : null;
     }
 
-    private get selectedTableStyle(): TableStyle {
+    public get selectedTableStyle(): TableStyle {
         return this.tableStyleComponent ?
             this.tableStyleComponent.style : TableStyle.Table;
     }

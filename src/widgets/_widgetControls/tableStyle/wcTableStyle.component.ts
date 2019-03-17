@@ -47,8 +47,8 @@ export class WcTableStyleComponent {
     @Output()
     public styleChange = new EventEmitter<TableStyle>();
 
-    public changeStyle(newStyle: TableStyle) {
-        this.style = newStyle;
-        this.styleChange.emit(newStyle);
+    public changeStyle(newStyle: string) {
+        this.style = newStyle as TableStyle;
+        this.styleChange.emit(this.style);
     }
 }

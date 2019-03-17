@@ -37,7 +37,7 @@ export class MarketsWidgetComponent implements OnInit {
         name: DataGenerator.pick(['Ripple', 'Decred', 'Golem', 'Stellar'])
     });
 
-    private data: DataRow[] = this.dataGenerator.generateMany<DataRow>(20);
+    public data: DataRow[] = this.dataGenerator.generateMany<DataRow>(20);
 
     public ngOnInit(): void {
         this.data = this.dataGenerator.generateMany<DataRow>(20);

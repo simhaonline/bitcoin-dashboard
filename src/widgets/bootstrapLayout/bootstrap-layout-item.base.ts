@@ -102,7 +102,7 @@ export class BootstrapLayoutItem {
         });
     }
 
-    protected onComponentInstance(component: WidgetWithOptions) {
+    public onComponentInstance(component: WidgetWithOptions) {
         this.renderedComponentInstance = component;
 
         if (

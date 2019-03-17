@@ -19,7 +19,7 @@ export interface UserStat {
     templateUrl: 'statistics.component.html'
 })
 export class StatisticsComponent {
-    private stats: UserStat[] = [
+    public stats: UserStat[] = [
         {
             period: 'Last 24 Hours',
             futuresVolume: { btc: 0.0001, usd: 5 },

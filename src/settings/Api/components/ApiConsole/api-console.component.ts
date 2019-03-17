@@ -11,7 +11,7 @@ export class ApiConsoleComponent {
     @Input()
     public accessSecret: string;
 
-    private actions: string[] = [
+    public actions: string[] = [
         '/public/test',
         '/public/getinstruments',
         '/public/getcurrencies',
@@ -46,5 +46,5 @@ export class ApiConsoleComponent {
         '/private/subscribe',
         '/private/unsubscribe'
     ];
-    private action = _.first(this.actions);
+    public action = _.first(this.actions);
 }

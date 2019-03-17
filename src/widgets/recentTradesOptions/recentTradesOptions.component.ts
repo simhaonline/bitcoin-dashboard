@@ -42,6 +42,8 @@ export class RecentTradesOptionsComponent extends WidgetBase implements OnInit {
         }
     }
 
+    public data: RecentTradesOptionsRow[] = [];
+
     private get RecentTradesVolumeComponent(): WcRecentTradesVolumeComponent {
         return this.renderedControlComponents ?
             this.renderedControlComponents.get(WcRecentTradesVolumeComponent) : null;
@@ -65,8 +67,6 @@ export class RecentTradesOptionsComponent extends WidgetBase implements OnInit {
         qty: DataGenerator.between(1, 3),
         date: DataGenerator.custom(() => new Date())
     });
-
-    private data: RecentTradesOptionsRow[] = [];
 
     public ngOnInit(): void {
         this.data = this.tradesGenerator.generateMany<RecentTradesOptionsRow>(6);

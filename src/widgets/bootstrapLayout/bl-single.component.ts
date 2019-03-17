@@ -25,14 +25,14 @@ export class BlSingleComponent extends BootstrapLayoutItem {
     @Output()
     public reattach: EventEmitter<any> = new EventEmitter();
 
-    private set isCollapsed(value: boolean) {
+    public set isCollapsed(value: boolean) {
         this.collapseState = value ? 'collapsed' : 'visible';
     }
-    private get isCollapsed(): boolean {
+    public get isCollapsed(): boolean {
         return this.collapseState === 'collapsed';
     }
 
-    private collapseState = 'visible';
+    public collapseState = 'visible';
 
     constructor(elementRef: ElementRef, componentFactory: ComponentFactoryResolver) {
         super(elementRef, componentFactory);

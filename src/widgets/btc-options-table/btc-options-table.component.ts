@@ -139,6 +139,16 @@ export class BtcOptionsTableComponent extends WidgetBase implements OnInit, OnDe
         WcOptionsFilterComponent,
         WcFullscreenComponent
     ];
+    public enabledColumns: BtcOptionsEnabledColumns = {
+        last: true,
+        iv: true,
+        vol: true,
+        open: true,
+        delta: true,
+        position: true
+    };
+    public activeColumns: TableColumn[] = [];
+    public data: BtcOptionsRow[] = [];
 
     private get FilterComponent(): WcOptionsFilterComponent {
         return this.renderedControlComponents ?
@@ -153,8 +163,6 @@ export class BtcOptionsTableComponent extends WidgetBase implements OnInit, OnDe
         moment().add(1, 'M').endOf('month').day(-2).toDate(),
         moment().add(1, 'Q').endOf('month').day(-2).toDate()
     ];
-
-    private data: BtcOptionsRow[] = [];
 
     // Templates
     @ViewChild('lastTmpl')
@@ -180,17 +188,6 @@ export class BtcOptionsTableComponent extends WidgetBase implements OnInit, OnDe
     private table: DatatableComponent;
 
     private allColumns: TableColumn[] = [];
-
-    private enabledColumns: BtcOptionsEnabledColumns = {
-        last: true,
-        iv: true,
-        vol: true,
-        open: true,
-        delta: true,
-        position: true
-    };
-
-    private activeColumns: TableColumn[] = [];
 
     /* TODO: demo only */
     private dataGenerator = new DataGenerator({
@@ -463,7 +460,7 @@ export class BtcOptionsTableComponent extends WidgetBase implements OnInit, OnDe
         return `highlight--${row.highlight}`;
     }
 
-    private assignActiveColumns() {
+    public assignActiveColumns() {
         let disabledColumnProps = [];
 
         _.forOwn(this.enabledColumns, (active: boolean, key: string) => {
@@ -474,6 +471,9 @@ export class BtcOptionsTableComponent extends WidgetBase implements OnInit, OnDe
 
         this.activeColumns = _.filter(this.allColumns, (col: TableColumn) =>
             !_.includes(disabledColumnProps, col.prop));
+    }
+
+    public onDetailToggle(event: Event) {
     }
 
     private generateData() {

@@ -10,14 +10,14 @@ export interface FooterIndex {
 }
 
 @Component({
-    selector: 'appFooter',
+    selector: 'app-footer',
     styleUrls: [
         './appFooter.component.scss'
     ],
     templateUrl: './appFooter.component.html',
 })
 export class AppFooterComponent {
-    private indexes: FooterIndex[] = [
+    public indexes: FooterIndex[] = [
         { name: 'Bitfinex' },
         { name: 'Bitstamp', value: 9337.15, date: new Date(), delta: 1 },
         { name: 'GDAX', value: 9337.31, date: new Date(), delta: -1 },

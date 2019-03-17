@@ -27,6 +27,9 @@ export class BootstrapLayoutComponent {
         // TODO: Will need some deep compare stuff to recover existing refs on change
         this.layoutItems = _.map(value, (layoutItem) => this.transform(layoutItem));
     }
+    get layout() {
+        return this.layoutItems;
+    }
 
     private rawLayout: Array<LayoutItem<BootstrapLayoutItemOptions>> = [];
 

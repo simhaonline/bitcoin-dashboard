@@ -48,10 +48,10 @@ export class TransactionLogComponent implements OnInit {
     @ViewChild('infoTmpl')
     private infoTmpl: TemplateRef<any>;
 
-    private columns: TableColumn[];
-    private transactionsList: Transaction[] = [];
-    private transactionsListPageNo: number = 1;
-    private transactionsListPageSize = 20;
+    public columns: TableColumn[];
+    public transactionsList: Transaction[] = [];
+    public transactionsListPageNo = 1;
+    public transactionsListPageSize = 20;
 
     /* TODO: demo only */
     private dataGenerator = new DataGenerator({

@@ -41,19 +41,19 @@ import { SideMenuTitleDirective } from './sideMenuTitle.directive';
 export class SideMenuComponent {
     @Input()
     set isOpen(val: boolean) {
-        this._openState = val ? 'open' : 'closed';
+        this.openState = val ? 'open' : 'closed';
     }
     get isOpen(): boolean {
-        return this._openState === 'open';
+        return this.openState === 'open';
     }
 
     @ContentChild(SideMenuTitleDirective)
-    private titleElement: SideMenuTitleDirective;
+    public titleElement: SideMenuTitleDirective;
     @ContentChildren(SideMenuRouteDirective)
-    private routeElements: QueryList<SideMenuRouteDirective>;
+    public routeElements: QueryList<SideMenuRouteDirective>;
 
-    private _openState = 'closed';
-    private _hasActiveRoute = false;
+    public openState = 'closed';
+    public hasActiveRoute = false;
 
     constructor(router: Router) {
         const isRouteActive = () =>
@@ -62,7 +62,7 @@ export class SideMenuComponent {
 
         router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
-                this._hasActiveRoute = this.isOpen = isRouteActive();
+                this.hasActiveRoute = this.isOpen = isRouteActive();
             }
         });
     }

@@ -12,6 +12,13 @@ enum SecurityTab {
     ],
 })
 export class SecurityComponent {
-    public enabledTab = SecurityTab.TwoFactorAuthorization;
     public twoFactorEnabled = false;
+    public set enabledTab(tab: string) {
+        this.tab = tab as SecurityTab;
+    }
+    public get enabledTab(): string {
+        return this.tab as string;
+    }
+
+    private tab = SecurityTab.TwoFactorAuthorization;
 }

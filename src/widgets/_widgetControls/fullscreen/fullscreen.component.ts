@@ -40,7 +40,7 @@ export class WcFullscreenComponent implements WidgetHeader {
 
     private layoutComponent: BootstrapLayoutItem;
 
-    private toggle() {
+    public toggle() {
         this.enabled = !this.ownerLayoutComponent.isFullscreen;
         this.ownerLayoutComponent.toggleFullscreen(this.enabled);
         this.enabledChange.emit(this.enabled);

@@ -66,7 +66,7 @@ export class WithdrawComponent {
         this.withdrawalListPageNo = 1;
     }
 
-    private withdraw() {
+    public withdraw() {
         const rnd = Math.round(Math.random() * 3);
 
         switch (rnd) {
