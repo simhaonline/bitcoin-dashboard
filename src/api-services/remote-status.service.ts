@@ -4,7 +4,7 @@ import { Observable, interval, combineLatest, of } from 'rxjs';
 import { ServiceConnection } from 'core/serviceConnection';
 import { MessageOutput } from 'core/connection.interface';
 import { ApiActions } from './service-api.actions';
-import { startWith, switchMap, map, tap } from 'rxjs/operators';
+import { startWith, switchMap, map, tap, mergeMap } from 'rxjs/operators';
 
 export interface RemoteStatus {
     time: number;
@@ -15,10 +15,10 @@ const STATUS_UPDATE_INTERVAL = 1000;
 
 @Injectable()
 export class RemoteStatusApiService {
-    private _initialTime?: number = null;
+    private initialTime?: number = null;
 
     constructor(
-        private _connection: ServiceConnection
+        private connection: ServiceConnection
     ) { }
 
     /**
@@ -31,7 +31,7 @@ export class RemoteStatusApiService {
             .pipe(
                 startWith(0),
                 switchMap(
-                    () => this._connection.callRaw(ApiActions.Test)
+                    () => this.connection.callRaw(ApiActions.Test)
                         .pipe(
                             map<MessageOutput, RemoteStatus>((value) => ({
                                 connected: true,
@@ -40,7 +40,9 @@ export class RemoteStatusApiService {
                         )
                 ),
                 tap((val) => {
-                    this._initialTime = val.time;
+                    if (!this.initialTime) {
+                        this.initialTime = val.time;
+                    }
                 })
             );
 
@@ -53,7 +55,7 @@ export class RemoteStatusApiService {
         // server time by adding ticks count to initial time
         return combineLatest(remoteStatus$, timeTick$).pipe(
             switchMap(([stats, tick]) => of<RemoteStatus>({
-                time: this._initialTime ? this._initialTime + tick * 1000 : stats.time,
+                time: this.initialTime ? this.initialTime + tick * 1000 : stats.time,
                 connected: stats.connected
             }))
         );
