@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, from, interval, combineLatest} from 'rxjs';
-import { switchMap, map, startWith, tap } from 'rxjs/operators';
+import { switchMap, map, startWith, tap, filter } from 'rxjs/operators';
 import _ from 'lodash';
 
 import { ServiceConnection } from 'core/serviceConnection';
@@ -50,6 +50,7 @@ export class CurrencyIndexApiService {
                     (msg) => _.isEmpty(msg.notifications) ?
                         of({ btc: { } }) :
                         from(msg.notifications).pipe(
+                            filter(({ result }) => !_.isUndefined(result.btc)),
                             map<NotificationEntry, CurrencyIndex>(({ result }) => ({
                                 btc: {
                                     value: result.btc,

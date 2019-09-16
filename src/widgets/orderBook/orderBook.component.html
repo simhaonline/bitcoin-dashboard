@@ -63,7 +63,7 @@
                     24h High
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.high ? (summary.high | round:2) : '-' }}
+                    {{ summary.high ? (summary.high | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -72,7 +72,7 @@
                     24h Low
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.low ? (summary.low | round:2) : '-' }}
+                    {{ summary.low ? (summary.low | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -81,7 +81,7 @@
                     24h Vol.
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.volume ? (summary.volume | round:2) : '-' }}
+                    {{ summary.volume ? (summary.volume | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -90,7 +90,7 @@
                     Open
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.open ? (summary.open | round:2) : '-' }}
+                    {{ summary.open ? (summary.open | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -132,7 +132,7 @@
         <tbody>
             <tr *ngFor="let row of asks">
                 <td class="text-danger">
-                    {{row.price ? (row.price | round:2) : '-'}}
+                    {{row.price ? (row.price | number : '1.2-2') : '-'}}
                 </td>
                 <td class="text-center text-muted">
                     {{row.quantity ? (row.quantity | round) : '-'}}
@@ -159,7 +159,7 @@
                         [class.text-danger]="summary.overall < 0"
                         [class.text-success]="summary.overall >= 0"
                     ></i>
-                    {{ summary.overall ? (summary.overall | round:2) : '-' }}
+                    {{ summary.overall ? (summary.overall | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -168,7 +168,7 @@
                     Mark
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.mark ? (summary.mark | round:2) : '-' }}
+                    {{ summary.mark ? (summary.mark | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -177,7 +177,7 @@
                     Index
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.index ? (summary.index | round:2) : '-' }}
+                    {{ summary.index ? (summary.index | number : '1.2-2') : '-' }}
                 </span>
             </div>
         </li>
@@ -201,7 +201,7 @@
         <tbody>
             <tr *ngFor="let row of bids">
                 <td class="text-success">
-                    {{row.price ? (row.price | round:2) : '-'}}
+                    {{row.price ? (row.price | number : '1.2-2') : '-'}}
                 </td>
                 <td class="text-center text-muted">
                     {{row.quantity ? (row.quantity | round) : '-'}}
@@ -226,7 +226,7 @@
                     24h High
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.high ? (summary.high | round:2) : '-' }}
+                    {{ summary.high ? (summary.high | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -235,7 +235,7 @@
                     24h Low
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.low ? (summary.low | round:2) : '-' }}
+                    {{ summary.low ? (summary.low | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -244,7 +244,7 @@
                     24h Vol.
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.volume ? (summary.volume | round:2) : '-' }}
+                    {{ summary.volume ? (summary.volume | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -253,7 +253,7 @@
                     Open
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.open ? (summary.open | round:2) : '-' }}
+                    {{ summary.open ? (summary.open | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -280,7 +280,7 @@
                     Mark
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.mark ? (summary.mark | round:2) : '-' }}
+                    {{ summary.mark ? (summary.mark | number : '1.2-2') : '-' }}
                 </span>
             </div>
 
@@ -289,7 +289,7 @@
                     Index
                 </abbr>
                 <span class="summary__item__value">
-                    {{ summary.index ? (summary.index | round:2) : '-' }}
+                    {{ summary.index ? (summary.index | number : '1.2-2') : '-' }}
                 </span>
             </div>
         </li>
@@ -320,7 +320,7 @@
                         {{row.quantity ? (row.quantity | round) : '-'}}
                     </td>
                     <td class="text-danger text-right">
-                        {{row.price ? (row.price | round:2) : '-'}}
+                        {{row.price ? (row.price | number : '1.2-2') : '-'}}
                     </td>
                     <td></td>
                 </tr>
@@ -345,7 +345,7 @@
                 <tr *ngFor="let row of bids">
                     <td></td>
                     <td class="text-success text-left">
-                        {{row.price ? (row.price | round:2) : '-'}}
+                        {{row.price ? (row.price | number : '1.2-2') : '-'}}
                     </td>
                     <td class="text-center text-muted text-center">
                         {{row.quantity ? (row.quantity | round) : '-'}}
