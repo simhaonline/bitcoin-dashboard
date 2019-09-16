@@ -1,25 +1,17 @@
 import {
     Component,
     ElementRef,
-    AfterContentInit
+    AfterContentInit,
+    OnDestroy,
 } from '@angular/core';
 import _ from 'lodash';
 import uuid from 'uuid';
-import { from } from 'rxjs';
-import { mergeMap, filter, first } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-
-import * as getDataFeeds from 'assets/vendor/trading-view/datafeed.js';
-import * as getTradingView from 'assets/vendor/trading-view/trading-view.js';
-
-import FtuDataFeed from './FtuDataFeed';
 
 import { WidgetDefinition } from './..';
-import { AppState } from 'store/app.state';
-import { Config } from 'core/config';
+import { TradingViewService } from 'core/tradingView.service';
 
 const DEFAULT_CONFIG = {
-    custom_css_url: 'css/dark.css',
+    theme: 'dark',
     fullscreen: false,
     autosize: true,
     exchanges: [],
@@ -37,7 +29,6 @@ const DEFAULT_CONFIG = {
     use_localstorage_for_settings: true,
     save_chart_properties_to_local_storage: true,
     container_id: 'tv_chart_container',
-    library_path: '/assets/vendor/trading-view/',
     locale: 'en',
     drawings_access: {
         type: 'black',
@@ -80,7 +71,6 @@ const DEFAULT_CONFIG = {
         'bollinger bands.median.color': '#33FF88',
         'bollinger bands.upper.linewidth': 7
     },
-    debug: true,
     time_frames: [],
     // timeframe: '1D',
     favorites: {
@@ -96,7 +86,7 @@ const DEFAULT_CONFIG = {
         <div class='trading-view-wrapper'></div>
     `
 })
-export class TradingViewWidgetComponent implements AfterContentInit {
+export class TradingViewWidgetComponent implements AfterContentInit, OnDestroy {
     public static readonly definition: WidgetDefinition = {
         name: 'tradingView'
     };
@@ -107,40 +97,29 @@ export class TradingViewWidgetComponent implements AfterContentInit {
 
     constructor(
         private componentElement: ElementRef,
-        private store: Store<AppState>,
-        private config: Config,
+        private tradingView: TradingViewService
     ) { }
 
     public async ngAfterContentInit(): Promise<void> {
         const containerId = `chart_${uuid.v1()}`;
         const targetElement =
             this.componentElement.nativeElement.querySelector('.trading-view-wrapper');
-        const defaultDatafeed = getDataFeeds();
-        const TradingView = getTradingView(defaultDatafeed);
         const targetConfig = Object.assign({}, DEFAULT_CONFIG, this.settings, {
             container_id: containerId,
-            symbol: await this.generateSymbol()
+            symbol: 'BTCUSD'
         });
-        const dataFeed = targetConfig.datafeed = new FtuDataFeed(
-            this.tvWidget,
-            () => _.omit(targetConfig, 'datafeed'),
-            this.config.apiAjaxUrl
-        );
-
         targetElement.id = containerId;
         targetElement.style.height = '500px';
         targetElement.style.display = 'block';
 
-        dataFeed.WidgetInstance = this.tvWidget = new TradingView.widget(targetConfig);
+        const TradingView = this.tradingView.getPrototype();
+
+        this.tvWidget = new TradingView.widget(targetConfig);
     }
 
-    private async generateSymbol() {
-        const activeFuture = await this.store.select('instruments').pipe(
-            mergeMap((instrumentsModel) => from(instrumentsModel.currentInstruments)),
-            filter((instrument) => instrument.kind === 'future'),
-            first((instrument) => instrument.isActive)
-        ).toPromise();
-
-        return activeFuture.instrumentName;
+    public ngOnDestroy(): void {
+        if (this.tvWidget) {
+            this.tvWidget.remove();
+        }
     }
 }

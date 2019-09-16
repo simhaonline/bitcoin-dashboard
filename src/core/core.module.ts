@@ -15,6 +15,7 @@ import { ScreenSizeService } from './screenSize.service';
 import { PageTitleService } from './pageTitle.service';
 import { ThemeService } from './theme.service';
 import { DebouncerService } from './debouncer.service';
+import { TradingViewService } from './tradingView.service';
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import { DebouncerService } from './debouncer.service';
         ScreenSizeService,
         PageTitleService,
         ThemeService,
-        DebouncerService
+        DebouncerService,
+        TradingViewService,
     ],
     exports: [
         CustomScrollbarDirective,
