@@ -9,6 +9,7 @@ import uuid from 'uuid';
 
 import { WidgetDefinition } from './..';
 import { TradingViewService } from 'core/tradingView.service';
+import { ThemeService, ThemeStyle } from 'core/theme.service';
 
 const DEFAULT_CONFIG = {
     theme: 'dark',
@@ -97,16 +98,30 @@ export class TradingViewWidgetComponent implements AfterContentInit, OnDestroy {
 
     constructor(
         private componentElement: ElementRef,
-        private tradingView: TradingViewService
-    ) { }
+        private tradingView: TradingViewService,
+        private themeService: ThemeService,
+    ) {
+        this.themeService.onStyleChange.subscribe(this.themeChangedHandler.bind(this));
+    }
 
     public async ngAfterContentInit(): Promise<void> {
+        this.initTradingView(this.themeService.style);
+    }
+
+    public ngOnDestroy(): void {
+        if (this.tvWidget) {
+            this.tvWidget.remove();
+        }
+    }
+
+    private initTradingView(style: ThemeStyle) {
         const containerId = `chart_${uuid.v1()}`;
         const targetElement =
             this.componentElement.nativeElement.querySelector('.trading-view-wrapper');
         const targetConfig = Object.assign({}, DEFAULT_CONFIG, this.settings, {
             container_id: containerId,
-            symbol: 'BTCUSD'
+            symbol: 'BTCUSD',
+            theme: style === ThemeStyle.Dark ? 'dark' : 'light'
         });
         targetElement.id = containerId;
         targetElement.style.height = '500px';
@@ -117,9 +132,9 @@ export class TradingViewWidgetComponent implements AfterContentInit, OnDestroy {
         this.tvWidget = new TradingView.widget(targetConfig);
     }
 
-    public ngOnDestroy(): void {
-        if (this.tvWidget) {
-            this.tvWidget.remove();
-        }
+    private themeChangedHandler(style) {
+        this.tvWidget.options.theme = style === ThemeStyle.Dark ? 'dark' : 'light';
+
+        this.tvWidget.reload();
     }
 }
