@@ -39,7 +39,7 @@ $grays: map-merge((
 ), $grays);
 
 
-$blue:    #2EA2F8; //change
+$blue:    #1eb6f9; //change
 $indigo:  #6610f2;
 $purple:  #CA8EFF; //change
 $pink:    #e83e8c;
@@ -47,8 +47,8 @@ $red:     #ED1C24; //change
 $orange:  #F27212; //change
 $yellow:  #F7BF47; //change
 $green:   #1BB934!default;  // change
-$teal:    #20c997;
-$cyan:    #33AE9A; //change
+$teal:    #1eb6f9;
+$cyan:    #5DB7DE; //change
 
 $colors: ();
 $colors: map-merge((
@@ -69,7 +69,7 @@ $colors: map-merge((
 
 $theme-colors: ();
 $theme-colors: map-merge((
-  primary: $cyan,
+  primary: $blue,
   secondary: $gray-600,
   success: $green,
   info: $cyan,
@@ -765,7 +765,7 @@ $breadcrumb-margin-bottom:      1rem;
 
 $breadcrumb-bg:                 $gray-200;
 $breadcrumb-divider-color:      $gray-600;
-$breadcrumb-active-color:       $gray-600;
+$breadcrumb-active-color:       $gray-900;
 $breadcrumb-divider:            "/";
 
 
