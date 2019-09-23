@@ -104,6 +104,13 @@
     }
 }
 
+.table-split {
+    th,
+    td {
+        width: calc(100% / 3);
+    }
+}
+
 /**
     Options
 */
