@@ -429,7 +429,7 @@ export class BtcOptionsTableComponent extends WidgetBase implements OnInit, OnDe
                 ...(_.pick(newData[rowToModify], ['periodEnd', 'highlight', 'strike']))
             };
             this.data = newData;
-        }, 200);
+        }, 1000);
 
         // Update Filter Entries
         setTimeout(() => {
