@@ -41,6 +41,11 @@
     .dropdown-menu {
         top: 100% !important;
         position: absolute;
+
+        &[x-placement="bottom-right"] {
+            left: auto;
+            right: 0;
+        }
     }
 
     .dropdown-toggle .fa {
